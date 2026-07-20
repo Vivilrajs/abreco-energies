@@ -26,7 +26,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
 
   // The login page renders without the shell chrome.
   if (pathname === "/admin/login") {
-    return <>{children}</>;
+    return <div className="light">{children}</div>;
   }
 
   async function logout() {
@@ -36,7 +36,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="flex min-h-screen bg-neutral-100 text-neutral-900">
+    <div className="light flex min-h-screen bg-neutral-100 text-neutral-900">
       <aside className="fixed inset-y-0 left-0 flex w-64 flex-col border-r border-neutral-200 bg-white">
         <div className="flex h-16 items-center gap-2 border-b border-neutral-200 px-6">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand">

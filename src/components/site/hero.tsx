@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Volume2, VolumeX, ChevronDown } from "lucide-react";
 import { LeadForm } from "./lead-form";
+import { Eyebrow } from "@/components/site/eyebrow";
 import type { SettingsDTO } from "@/lib/data";
 
 export function Hero({ settings }: { settings: SettingsDTO }) {
@@ -33,7 +34,7 @@ export function Hero({ settings }: { settings: SettingsDTO }) {
   }, []);
 
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden">
+    <section className="relative isolate flex min-h-screen items-center overflow-hidden">
       {/* Background layer */}
       <div className="absolute inset-0 -z-10">
         {settings.videoUrl && videoOk ? (
@@ -44,16 +45,23 @@ export function Hero({ settings }: { settings: SettingsDTO }) {
             muted
             loop
             playsInline
+            poster={settings.imageUrl || undefined}
             onError={() => setVideoOk(false)}
           >
-            <source src={settings.videoUrl} type="video/mp4" />
+            <source src={settings.videoUrl} />
           </video>
+        ) : settings.imageUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={settings.imageUrl}
+            alt=""
+            className="h-full w-full object-cover"
+          />
         ) : (
           <div className="hero-fallback h-full w-full animate-brand-drift" />
         )}
         {/* Cinematic overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
-        <div className="absolute inset-0 bg-[radial-gradient(120%_120%_at_50%_0%,transparent_40%,rgba(0,0,0,0.6)_100%)]" />
+        <div className="absolute inset-0 bg-black/55" />
       </div>
 
       {/* Ambient audio */}
@@ -75,10 +83,9 @@ export function Hero({ settings }: { settings: SettingsDTO }) {
       {/* Content */}
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 py-32 lg:grid-cols-2 lg:items-center">
         <div className="animate-fade-up">
-          <span className="inline-flex items-center gap-2 rounded-full border border-brand/40 bg-brand/10 px-4 py-1.5 text-sm font-medium text-brand backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
+          <Eyebrow className="backdrop-blur">
             Accredited across VIC · NSW · QLD · SA
-          </span>
+          </Eyebrow>
           <h1 className="mt-6 text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
             {settings.heroSubtitle}
           </h1>

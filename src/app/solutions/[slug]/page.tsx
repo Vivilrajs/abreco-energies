@@ -35,7 +35,7 @@ export default async function SolutionPage({
   if (!product) notFound();
 
   return (
-    <main className="bg-neutral-950">
+    <main className="site-font bg-background">
       <SiteHeader />
       <ProductDetail product={product} />
       <SiteFooter settings={settings} />

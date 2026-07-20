@@ -2,6 +2,7 @@ import { SiteHeader } from "@/components/site/site-header";
 import { Hero } from "@/components/site/hero";
 import { SolutionsSection } from "@/components/site/solutions-section";
 import { WhySection } from "@/components/site/why-section";
+import { ProcessSection } from "@/components/site/process-section";
 import { SiteFooter } from "@/components/site/site-footer";
 import { getPublishedSolutions, getSettings } from "@/lib/data";
 
@@ -14,11 +15,12 @@ export default async function HomePage() {
   ]);
 
   return (
-    <main id="top" className="bg-neutral-950">
+    <main id="top" className="site-font bg-background">
       <SiteHeader />
       <Hero settings={settings} />
       <SolutionsSection solutions={solutions} />
-      <WhySection />
+      <WhySection settings={settings} />
+      <ProcessSection />
       <SiteFooter settings={settings} />
     </main>
   );

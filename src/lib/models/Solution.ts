@@ -25,6 +25,7 @@ export interface ISolution {
   headline: string; // e.g. "What is so good about Heat Pumps?"
   intro: string; // long intro paragraph(s)
   heroImage: string;
+  heroVideo: string; // optional; shown instead of heroImage when set
   ctaLabel: string; // default "Get Now!"
   benefits: IBenefit[];
   commercial: IInstallSection;
@@ -62,6 +63,7 @@ const SolutionSchema = new Schema<ISolution>(
     headline: { type: String, default: "" },
     intro: { type: String, default: "" },
     heroImage: { type: String, default: "" },
+    heroVideo: { type: String, default: "" },
     ctaLabel: { type: String, default: "Get Now!" },
     benefits: { type: [BenefitSchema], default: [] },
     commercial: { type: InstallSchema, default: () => ({}) },

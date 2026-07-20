@@ -23,13 +23,22 @@ export default async function ContactPage() {
   const settings = await getSettings();
 
   return (
-    <main className="bg-neutral-950">
+    <main className="site-font bg-background">
       <SiteHeader />
 
-      <section className="relative overflow-hidden">
+      <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
-          <div className="hero-fallback h-full w-full animate-brand-drift" />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-neutral-950" />
+          {settings.imageUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={settings.imageUrl}
+              alt=""
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <div className="hero-fallback h-full w-full animate-brand-drift" />
+          )}
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 pb-24 pt-40 lg:grid-cols-2">
@@ -114,8 +123,8 @@ function ContactRow({
   href?: string;
 }) {
   const inner = (
-    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-brand/40">
-      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand/15 text-brand">
+    <div className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-brand-blue/40">
+      <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-blue/15 text-brand-blue">
         {icon}
       </span>
       <div>
