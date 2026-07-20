@@ -22,17 +22,18 @@ const POINTS = [
   },
 ];
 
-export function WhySection({ settings }: { settings: SettingsDTO }) {
+export function WhySection({ settings }: { settings?: SettingsDTO }) {
+  const imageUrl = settings?.imageUrl;
   return (
     <section id="why" className="relative bg-background py-24">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-14 px-6 lg:grid-cols-2 lg:items-center">
         {/* Image + experience badge */}
         <Reveal className="relative">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-foreground/10">
-            {settings.imageUrl ? (
+            {imageUrl ? (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={settings.imageUrl}
+                src={imageUrl}
                 alt="Abreco Energies installation"
                 className="h-full w-full object-cover"
               />

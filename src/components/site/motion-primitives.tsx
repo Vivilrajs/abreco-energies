@@ -9,7 +9,7 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 export function Reveal({
   children,
   delay = 0,
-  y = 24,
+  y = 40,
   className,
   once = true,
 }: {
@@ -26,7 +26,7 @@ export function Reveal({
       initial={reduce ? { opacity: 0 } : { opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once, amount: 0.2 }}
-      transition={{ duration: 0.4, delay, ease: EASE }}
+      transition={{ duration: 0.9, delay, ease: EASE }}
     >
       {children}
     </motion.div>
@@ -38,7 +38,7 @@ export function Stagger({
   children,
   className,
   delay = 0,
-  step = 0.05,
+  step = 0.14,
 }: {
   children: ReactNode;
   className?: string;
@@ -65,7 +65,7 @@ export function Stagger({
 export function StaggerItem({
   children,
   className,
-  y = 20,
+  y = 30,
 }: {
   children: ReactNode;
   className?: string;
@@ -74,7 +74,7 @@ export function StaggerItem({
   const reduce = useReducedMotion();
   const item: Variants = {
     hidden: reduce ? { opacity: 0 } : { opacity: 0, y },
-    show: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE } },
   };
   return (
     <motion.div className={className} variants={item}>
@@ -117,9 +117,9 @@ export function HeroIn({
   return (
     <motion.div
       className={className}
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 16 }}
+      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay, ease: EASE }}
+      transition={{ duration: 0.9, delay, ease: EASE }}
     >
       {children}
     </motion.div>
