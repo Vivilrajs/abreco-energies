@@ -29,14 +29,14 @@ export type SettingsDTO = Omit<ISiteSettings, "updatedAt">;
 
 const DEFAULT_SETTINGS: SettingsDTO = {
   key: "default",
-  heroTitle: "Abraco Energies",
+  heroTitle: "Abreco Energies",
   heroSubtitle: "Your partner in renewable energy solutions",
   heroBody:
-    "Abraco Energies is a leading supplier and installer of energy-efficient heat pumps, air conditioners, and solar solutions. Wherever you are in Australia, we help you save energy and reduce costs.",
+    "Abreco Energies is a leading supplier and installer of energy-efficient heat pumps, air conditioners, and solar solutions. Wherever you are in Australia, we help you save energy and reduce costs.",
   videoUrl: "/media/hero.mp4",
   audioUrl: "/media/ambient.mp3",
   phone: "1300 000 000",
-  email: "admin@abracoenergies.com",
+  email: "admin@abrecoenergies.com",
   address: "Australia",
 };
 

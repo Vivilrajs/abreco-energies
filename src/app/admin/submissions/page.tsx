@@ -114,7 +114,7 @@ export default function SubmissionsPage() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = `abraco-leads-${Date.now()}.csv`;
+    a.download = `abreco-leads-${Date.now()}.csv`;
     a.click();
     URL.revokeObjectURL(url);
   }

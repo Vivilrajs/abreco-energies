@@ -1,11 +1,12 @@
 import Link from "next/link";
 import type { SolutionDTO } from "@/lib/data";
+import { Reveal, Stagger, StaggerItem } from "@/components/site/motion-primitives";
 
 export function SolutionsSection({ solutions }: { solutions: SolutionDTO[] }) {
   return (
     <section id="solutions" className="relative bg-neutral-950 py-28">
       <div className="mx-auto max-w-7xl px-6">
-        <div className="mx-auto max-w-2xl text-center">
+        <Reveal className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-medium uppercase tracking-widest text-brand">
             What we offer
           </span>
@@ -16,16 +17,17 @@ export function SolutionsSection({ solutions }: { solutions: SolutionDTO[] }) {
             Premium systems, trusted brands, and government rebates handled for
             you — from first quote to final install.
           </p>
-        </div>
+        </Reveal>
 
-        <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {solutions.map((s, i) => (
-            <Link
+            <StaggerItem
               key={s._id}
+              className={i === 0 ? "lg:col-span-2" : ""}
+            >
+            <Link
               href={`/solutions/${s.slug}`}
-              className={`group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-8 transition duration-300 hover:-translate-y-1 hover:border-brand/40 ${
-                i === 0 ? "lg:col-span-2" : ""
-              }`}
+              className="group relative flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.06] to-white/[0.02] p-8 transition duration-300 hover:-translate-y-1 hover:border-brand/40"
             >
               <div className="absolute -right-16 -top-16 h-40 w-40 rounded-full bg-brand/20 blur-3xl transition group-hover:bg-brand/30" />
               <div className="relative">
@@ -42,8 +44,9 @@ export function SolutionsSection({ solutions }: { solutions: SolutionDTO[] }) {
                 </div>
               </div>
             </Link>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
       </div>
     </section>
   );

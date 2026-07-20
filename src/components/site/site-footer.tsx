@@ -14,7 +14,7 @@ export function SiteFooter({ settings }: { settings: SettingsDTO }) {
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand">
                 <Leaf size={20} className="text-white" />
               </span>
-              <span className="text-xl font-semibold">Abraco Energies</span>
+              <span className="text-xl font-semibold">Abreco Energies</span>
             </div>
             <p className="mt-4 max-w-md text-white/50">
               Your partner in renewable energy solutions. Cleaner, smarter, more
@@ -44,7 +44,7 @@ export function SiteFooter({ settings }: { settings: SettingsDTO }) {
         </div>
 
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row">
-          <span>© {new Date().getFullYear()} Abraco Energies. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Abreco Energies. All rights reserved.</span>
           <span>Accredited · VIC · NSW · QLD · SA</span>
         </div>
       </div>

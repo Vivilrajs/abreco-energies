@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Abraco Energies — Renewable Energy Solutions",
+  title: "Abreco Energies — Renewable Energy Solutions",
   description:
     "Premium heat pumps, air conditioning, and solar solutions across Australia. Your partner in renewable energy.",
 };

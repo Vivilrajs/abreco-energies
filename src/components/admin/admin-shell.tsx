@@ -42,7 +42,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand">
             <Leaf size={18} className="text-white" />
           </span>
-          <span className="font-semibold">Abraco Admin</span>
+          <span className="font-semibold">Abreco Admin</span>
         </div>
 
         <nav className="flex-1 space-y-1 p-4">

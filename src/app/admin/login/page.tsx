@@ -44,7 +44,7 @@ export default function AdminLogin() {
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand">
             <Leaf size={20} className="text-white" />
           </span>
-          <span className="text-lg font-semibold">Abraco Admin</span>
+          <span className="text-lg font-semibold">Abreco Admin</span>
         </div>
         <h1 className="mt-6 text-xl font-semibold text-white">Sign in</h1>
         <p className="mt-1 text-sm text-white/50">

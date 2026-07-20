@@ -43,7 +43,7 @@ export function SiteHeader() {
             <Leaf size={18} className="text-white" />
           </span>
           <span className="text-lg font-semibold tracking-tight">
-            Abraco Energies
+            Abreco Energies
           </span>
         </Link>
 

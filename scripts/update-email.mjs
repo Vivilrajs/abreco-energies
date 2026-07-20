@@ -10,7 +10,7 @@ try {
   }
 } catch {}
 
-const NEW_EMAIL = process.argv[2] || "admin@abracoenergies.com";
+const NEW_EMAIL = process.argv[2] || "admin@abrecoenergies.com";
 
 await mongoose.connect(process.env.MONGODB_URI);
 const res = await mongoose.connection

@@ -1,7 +1,7 @@
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 
-export const SESSION_COOKIE = "abraco_session";
+export const SESSION_COOKIE = "abreco_session";
 
 function sessionToken(): string {
   return process.env.ADMIN_SESSION_TOKEN ?? "";

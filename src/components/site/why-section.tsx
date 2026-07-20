@@ -37,7 +37,7 @@ export function WhySection() {
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-white/60">
               With years of experience in energy-efficient heating, cooling, and
-              solar, Abraco Energies understands how smart technology benefits
+              solar, Abreco Energies understands how smart technology benefits
               both your home or business and the environment. We provide fast,
               expert consultations, followed by professional installation.
             </p>

@@ -14,9 +14,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const product = await getSolutionBySlug(slug);
-  if (!product) return { title: "Not found — Abraco Energies" };
+  if (!product) return { title: "Not found — Abreco Energies" };
   return {
-    title: `${product.title} — Abraco Energies`,
+    title: `${product.title} — Abreco Energies`,
     description: product.tagline || product.description,
   };
 }
