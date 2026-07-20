@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Leaf, ChevronDown, Menu, X } from "lucide-react";
+import { ThemeToggle } from "./theme-toggle";
 
 const SOLAR = [
   { label: "Residential Solar", href: "/solutions/residential-solar" },
@@ -33,7 +34,7 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         scrolled || open
-          ? "border-b border-white/10 bg-black/70 backdrop-blur-xl"
+          ? "border-b border-white/10 bg-brand-blue/85 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
@@ -67,7 +68,7 @@ export function SiteHeader() {
               Solar & Batteries <ChevronDown size={14} />
             </button>
             <div className="invisible absolute left-1/2 top-full w-56 -translate-x-1/2 pt-3 opacity-0 transition group-hover:visible group-hover:opacity-100">
-              <div className="rounded-2xl border border-white/10 bg-neutral-900/95 p-2 backdrop-blur-xl">
+              <div className="rounded-2xl border border-white/10 bg-brand-blue-strong/95 p-2 backdrop-blur-xl">
                 {SOLAR.map((s) => (
                   <Link
                     key={s.href}
@@ -96,6 +97,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <ThemeToggle />
           <Link
             href="/contact"
             className="hidden rounded-full bg-brand px-5 py-2 text-sm font-medium text-white transition hover:bg-brand-strong sm:block"

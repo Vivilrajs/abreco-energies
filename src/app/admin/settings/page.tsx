@@ -6,12 +6,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { ImageUpload } from "@/components/admin/image-upload";
 
 type Settings = {
   heroTitle: string;
   heroSubtitle: string;
   heroBody: string;
   videoUrl: string;
+  imageUrl: string;
   audioUrl: string;
   phone: string;
   email: string;
@@ -79,12 +81,18 @@ export default function SettingsPage() {
           </Field>
         </Section>
 
-        <Section title="Media">
-          <Field label="Background video URL">
-            <Input
+        <Section title="Banner media">
+          <Field label="Background video">
+            <ImageUpload
+              kind="video"
               value={form.videoUrl}
-              onChange={(e) => set("videoUrl", e.target.value)}
-              placeholder="/media/hero.mp4"
+              onChange={(url) => set("videoUrl", url)}
+            />
+          </Field>
+          <Field label="Background image (poster / fallback)">
+            <ImageUpload
+              value={form.imageUrl}
+              onChange={(url) => set("imageUrl", url)}
             />
           </Field>
           <Field label="Ambient audio URL">
@@ -95,8 +103,10 @@ export default function SettingsPage() {
             />
           </Field>
           <p className="text-xs text-neutral-400">
-            Place files in <code>/public/media/</code> or paste a full URL. If
-            the video is missing, an animated gradient is shown instead.
+            Upload a video and/or image, or paste a full URL. The banner shows
+            the video if present, otherwise the image, otherwise an animated
+            gradient. The image also serves as the video&apos;s poster while it
+            loads.
           </p>
         </Section>
 

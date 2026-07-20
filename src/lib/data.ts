@@ -19,6 +19,7 @@ export type SolutionDTO = {
   headline: string;
   intro: string;
   heroImage: string;
+  heroVideo: string;
   ctaLabel: string;
   benefits: IBenefit[];
   commercial: IInstallSection;
@@ -27,13 +28,14 @@ export type SolutionDTO = {
 
 export type SettingsDTO = Omit<ISiteSettings, "updatedAt">;
 
-const DEFAULT_SETTINGS: SettingsDTO = {
+export const DEFAULT_SETTINGS: SettingsDTO = {
   key: "default",
   heroTitle: "Abreco Energies",
   heroSubtitle: "Your partner in renewable energy solutions",
   heroBody:
     "Abreco Energies is a leading supplier and installer of energy-efficient heat pumps, air conditioners, and solar solutions. Wherever you are in Australia, we help you save energy and reduce costs.",
   videoUrl: "/media/hero.mp4",
+  imageUrl: "",
   audioUrl: "/media/ambient.mp3",
   phone: "1300 000 000",
   email: "admin@abrecoenergies.com",
@@ -53,6 +55,7 @@ function toDTO(d: ISolution & { _id: unknown }): SolutionDTO {
     headline: d.headline ?? "",
     intro: d.intro ?? "",
     heroImage: d.heroImage ?? "",
+    heroVideo: d.heroVideo ?? "",
     ctaLabel: d.ctaLabel || "Get Now!",
     benefits: d.benefits ?? [],
     commercial: d.commercial ?? { title: "", body: "", scenarios: [], image: "" },
@@ -100,6 +103,7 @@ export async function getSettings(): Promise<SettingsDTO> {
       heroSubtitle: doc.heroSubtitle,
       heroBody: doc.heroBody,
       videoUrl: doc.videoUrl,
+      imageUrl: doc.imageUrl ?? "",
       audioUrl: doc.audioUrl,
       phone: doc.phone,
       email: doc.email,

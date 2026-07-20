@@ -27,6 +27,7 @@ const solutionSchema = z.object({
   headline: z.string().max(200).optional(),
   intro: z.string().max(3000).optional(),
   heroImage: z.string().max(500).optional(),
+  heroVideo: z.string().max(500).optional(),
   ctaLabel: z.string().max(60).optional(),
   benefits: z.array(benefitSchema).optional(),
   commercial: installSchema.optional(),
@@ -35,11 +36,15 @@ const solutionSchema = z.object({
 
 // Public GET returns only published; admin GET returns all.
 export async function GET() {
-  await connectDB();
-  const admin = await isAuthed();
-  const query = admin ? {} : { published: true };
-  const solutions = await Solution.find(query).sort({ order: 1 }).lean();
-  return NextResponse.json({ solutions });
+  try {
+    await connectDB();
+    const admin = await isAuthed();
+    const query = admin ? {} : { published: true };
+    const solutions = await Solution.find(query).sort({ order: 1 }).lean();
+    return NextResponse.json({ solutions });
+  } catch {
+    return NextResponse.json({ solutions: [] });
+  }
 }
 
 export async function POST(req: NextRequest) {

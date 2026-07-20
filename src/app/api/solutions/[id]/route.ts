@@ -27,6 +27,7 @@ const updateSchema = z.object({
   headline: z.string().max(200).optional(),
   intro: z.string().max(3000).optional(),
   heroImage: z.string().max(500).optional(),
+  heroVideo: z.string().max(500).optional(),
   ctaLabel: z.string().max(60).optional(),
   benefits: z.array(benefitSchema).optional(),
   commercial: installSchema.optional(),

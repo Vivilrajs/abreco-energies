@@ -5,18 +5,18 @@ export function SiteFooter({ settings }: { settings: SettingsDTO }) {
   return (
     <footer
       id="contact"
-      className="relative border-t border-white/10 bg-black py-20"
+      className="relative border-t border-foreground/10 bg-background py-20"
     >
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
           <div>
-            <div className="flex items-center gap-2 text-white">
+            <div className="flex items-center gap-2 text-foreground">
               <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand">
                 <Leaf size={20} className="text-white" />
               </span>
               <span className="text-xl font-semibold">Abreco Energies</span>
             </div>
-            <p className="mt-4 max-w-md text-white/50">
+            <p className="mt-4 max-w-md text-foreground/50">
               Your partner in renewable energy solutions. Cleaner, smarter, more
               affordable power for your home or business.
             </p>
@@ -43,7 +43,7 @@ export function SiteFooter({ settings }: { settings: SettingsDTO }) {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-sm text-white/40 sm:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-foreground/10 pt-8 text-sm text-foreground/40 sm:flex-row">
           <span>© {new Date().getFullYear()} Abreco Energies. All rights reserved.</span>
           <span>Accredited · VIC · NSW · QLD · SA</span>
         </div>
@@ -64,14 +64,16 @@ function ContactItem({
   href?: string;
 }) {
   const inner = (
-    <div className="h-full rounded-2xl border border-white/10 bg-white/5 p-5 transition hover:border-brand/40">
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand/15 text-brand">
+    <div className="h-full rounded-2xl border border-foreground/10 bg-foreground/5 p-5 transition hover:border-brand-blue/40">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brand-blue/15 text-brand-blue">
         {icon}
       </div>
-      <div className="mt-3 text-xs uppercase tracking-wider text-white/40">
+      <div className="mt-3 text-xs uppercase tracking-wider text-foreground/40">
         {label}
       </div>
-      <div className="mt-1 break-words font-medium text-white">{value}</div>
+      <div className="mt-1 break-words font-medium text-foreground">
+        {value}
+      </div>
     </div>
   );
   return href ? <a href={href}>{inner}</a> : inner;

@@ -6,6 +6,7 @@ export interface ISiteSettings {
   heroSubtitle: string;
   heroBody: string;
   videoUrl: string;
+  imageUrl: string;
   audioUrl: string;
   phone: string;
   email: string;
@@ -27,6 +28,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
         "Abreco Energies is a leading supplier and installer of energy-efficient heat pumps, air conditioners, and solar solutions.",
     },
     videoUrl: { type: String, default: "/media/hero.mp4" },
+    imageUrl: { type: String, default: "" },
     audioUrl: { type: String, default: "/media/ambient.mp3" },
     phone: { type: String, default: "1300 000 000" },
     email: { type: String, default: "admin@abrecoenergies.com" },

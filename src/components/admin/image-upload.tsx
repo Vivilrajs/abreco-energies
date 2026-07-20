@@ -10,13 +10,17 @@ export function ImageUpload({
   value,
   onChange,
   label,
+  kind = "image",
 }: {
   value: string;
   onChange: (url: string) => void;
   label?: string;
+  /** "video" swaps the preview + file picker to accept video files. */
+  kind?: "image" | "video";
 }) {
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [busy, setBusy] = useState(false);
+  const isVideo = kind === "video";
 
   async function upload(file: File) {
     setBusy(true);
@@ -41,8 +45,17 @@ export function ImageUpload({
       <div className="flex items-start gap-3">
         <div className="relative h-20 w-28 shrink-0 overflow-hidden rounded-lg border border-neutral-200 bg-neutral-100">
           {value ? (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img src={value} alt="" className="h-full w-full object-cover" />
+            isVideo ? (
+              <video
+                src={value}
+                className="h-full w-full object-cover"
+                muted
+                playsInline
+              />
+            ) : (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={value} alt="" className="h-full w-full object-cover" />
+            )
           ) : (
             <div className="flex h-full w-full items-center justify-center text-neutral-300">
               <Upload size={20} />
@@ -64,7 +77,7 @@ export function ImageUpload({
           <input
             ref={inputRef}
             type="file"
-            accept="image/*"
+            accept={isVideo ? "video/*" : "image/*"}
             hidden
             onChange={(e) => {
               const f = e.target.files?.[0];
@@ -85,12 +98,18 @@ export function ImageUpload({
             ) : (
               <Upload size={14} />
             )}
-            {busy ? "Uploading…" : "Upload image"}
+            {busy
+              ? "Uploading…"
+              : isVideo
+                ? "Upload video"
+                : "Upload image"}
           </Button>
           <Input
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            placeholder="…or paste an image URL"
+            placeholder={
+              isVideo ? "…or paste a video URL" : "…or paste an image URL"
+            }
             className="text-xs"
           />
         </div>

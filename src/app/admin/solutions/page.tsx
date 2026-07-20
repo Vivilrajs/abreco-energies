@@ -24,6 +24,7 @@ type Solution = {
   headline: string;
   intro: string;
   heroImage: string;
+  heroVideo: string;
   ctaLabel: string;
   benefits: Benefit[];
   commercial: Install;
@@ -45,6 +46,7 @@ const EMPTY: Draft = {
   headline: "",
   intro: "",
   heroImage: "",
+  heroVideo: "",
   ctaLabel: "Get Now!",
   benefits: [],
   commercial: { ...EMPTY_INSTALL },
@@ -86,6 +88,7 @@ export default function SolutionsPage() {
         headline: editing.headline ?? "",
         intro: editing.intro ?? "",
         heroImage: editing.heroImage ?? "",
+        heroVideo: editing.heroVideo ?? "",
         ctaLabel: editing.ctaLabel || "Get Now!",
         benefits: editing.benefits ?? [],
         commercial: editing.commercial ?? EMPTY_INSTALL,
@@ -321,6 +324,13 @@ export default function SolutionsPage() {
                     />
                   </Field>
                 </div>
+                <Field label="Hero video (optional — shown instead of image)">
+                  <ImageUpload
+                    kind="video"
+                    value={editing.heroVideo ?? ""}
+                    onChange={(url) => patch({ heroVideo: url })}
+                  />
+                </Field>
                 <Field label="Tagline (hero headline)">
                   <Input
                     value={editing.tagline ?? ""}
