@@ -17,7 +17,14 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
+      aria-label={
+        !mounted
+          ? "Toggle theme"
+          : isDark
+            ? "Switch to light mode"
+            : "Switch to dark mode"
+      }
+      suppressHydrationWarning
       className={`flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20 ${className}`}
     >
       {mounted && !isDark ? <Moon size={16} /> : <Sun size={16} />}

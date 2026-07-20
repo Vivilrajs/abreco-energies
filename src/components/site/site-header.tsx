@@ -2,8 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Leaf, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { Logo } from "./logo";
 
 const SOLAR = [
   { label: "Residential Solar", href: "/solutions/residential-solar" },
@@ -22,6 +23,7 @@ const NAV = [
 export function SiteHeader() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [solarOpen, setSolarOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -34,18 +36,13 @@ export function SiteHeader() {
     <header
       className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
         scrolled || open
-          ? "border-b border-white/10 bg-brand-blue/85 backdrop-blur-xl"
+          ? "border-b border-white/10 bg-[#05141f]/90 backdrop-blur-xl"
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        <Link href="/" className="flex items-center gap-2 text-white">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand">
-            <Leaf size={18} className="text-white" />
-          </span>
-          <span className="text-lg font-semibold tracking-tight">
-            Abreco Energies
-          </span>
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
+        <Link href="/" className="flex items-center">
+          <Logo height={52} />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
@@ -116,18 +113,45 @@ export function SiteHeader() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-white/10 lg:hidden">
+        <div className="border-t border-white/10 bg-[#05141f]/95 backdrop-blur-xl lg:hidden">
           <nav className="flex flex-col gap-1 px-6 py-4">
-            {[...NAV, ...SOLAR].map((n) => (
+            {NAV.map((n) => (
               <Link
                 key={n.href}
                 href={n.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-2 text-sm text-white/80 transition hover:bg-white/5"
+                className="rounded-lg px-3 py-2.5 text-sm text-white/80 transition hover:bg-white/5"
               >
                 {n.label}
               </Link>
             ))}
+
+            {/* Solar & Batteries collapsible */}
+            <button
+              onClick={() => setSolarOpen((v) => !v)}
+              aria-expanded={solarOpen}
+              className="flex items-center justify-between rounded-lg px-3 py-2.5 text-left text-sm text-white/80 transition hover:bg-white/5"
+            >
+              Solar &amp; Batteries
+              <ChevronDown
+                size={16}
+                className={`transition-transform ${solarOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+            {solarOpen && (
+              <div className="ml-3 flex flex-col gap-1 border-l border-white/10 pl-3">
+                {SOLAR.map((s) => (
+                  <Link
+                    key={s.href}
+                    href={s.href}
+                    onClick={() => setOpen(false)}
+                    className="rounded-lg px-3 py-2 text-sm text-white/70 transition hover:bg-white/5 hover:text-white"
+                  >
+                    {s.label}
+                  </Link>
+                ))}
+              </div>
+            )}
           </nav>
         </div>
       )}

@@ -41,6 +41,8 @@
   --color-card: var(--card);
   --color-brand: var(--brand);
   --color-brand-strong: var(--brand-strong);
+  --color-brand-red: var(--brand-red);
+  --color-brand-red-strong: var(--brand-red-strong);
   --color-brand-blue: var(--brand-blue);
   --color-brand-blue-strong: var(--brand-blue-strong);
   --radius-sm: calc(var(--radius) * 0.6);
@@ -60,13 +62,15 @@
   --card-foreground: oklch(0.16 0.01 160);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.55 0.22 25);
+  --primary: #0079b8;
   --primary-foreground: oklch(0.985 0 0);
-  /* Brand accent (red) + secondary (blue) */
-  --brand: oklch(0.55 0.22 25);
-  --brand-strong: oklch(0.46 0.21 24);
-  --brand-blue: oklch(0.34 0.09 250);
-  --brand-blue-strong: oklch(0.26 0.08 252);
+  /* Brand: blue #0079b8 (primary) + red #ec2347 (accent) */
+  --brand: #0079b8;
+  --brand-strong: #005e90;
+  --brand-red: #ec2347;
+  --brand-red-strong: #cf1739;
+  --brand-blue: #0079b8;
+  --brand-blue-strong: #005e90;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -181,20 +185,8 @@
 /* Fallback animated gradient when hero video is absent */
 .hero-fallback {
   background:
-    radial-gradient(
-      60% 60% at 20% 20%,
-      oklch(0.55 0.22 25 / 0.3),
-      transparent 70%
-    ),
-    radial-gradient(
-      50% 50% at 80% 30%,
-      oklch(0.4 0.1 250 / 0.4),
-      transparent 70%
-    ),
-    radial-gradient(
-      60% 60% at 50% 90%,
-      oklch(0.34 0.09 250 / 0.45),
-      transparent 70%
-    ),
-    oklch(0.14 0.015 250);
+    radial-gradient(60% 60% at 20% 20%, rgba(236, 35, 71, 0.28), transparent 70%),
+    radial-gradient(50% 50% at 80% 30%, rgba(0, 121, 184, 0.5), transparent 70%),
+    radial-gradient(60% 60% at 50% 90%, rgba(0, 94, 144, 0.55), transparent 70%),
+    #04121c;
 }

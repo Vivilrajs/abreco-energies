@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Leaf } from "lucide-react";
+import { Logo } from "@/components/site/logo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -40,12 +40,7 @@ export default function AdminLogin() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-neutral-950 px-6">
       <div className="w-full max-w-sm rounded-3xl border border-white/10 bg-white/[0.04] p-8 backdrop-blur-xl">
-        <div className="flex items-center gap-2 text-white">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand">
-            <Leaf size={20} className="text-white" />
-          </span>
-          <span className="text-lg font-semibold">Abreco Admin</span>
-        </div>
+        <Logo height={40} />
         <h1 className="mt-6 text-xl font-semibold text-white">Sign in</h1>
         <p className="mt-1 text-sm text-white/50">
           Enter the admin password to continue.
