@@ -75,7 +75,7 @@ export function Hero({ settings }: { settings: SettingsDTO }) {
       <button
         onClick={toggleSound}
         aria-label={soundOn ? "Mute ambient sound" : "Play ambient sound"}
-        className="absolute right-5 top-24 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-md transition hover:bg-white/20"
+        className="absolute right-5 top-24 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-black/40 text-white shadow-lg backdrop-blur-md transition hover:bg-black/60"
       >
         {soundOn ? <Volume2 size={18} /> : <VolumeX size={18} />}
       </button>
@@ -83,7 +83,7 @@ export function Hero({ settings }: { settings: SettingsDTO }) {
       {/* Content */}
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 py-32 lg:grid-cols-2 lg:items-center">
         <div className="animate-fade-up">
-          <Eyebrow className="backdrop-blur">
+          <Eyebrow tone="onMedia" className="backdrop-blur">
             Accredited across VIC · NSW · QLD · SA
           </Eyebrow>
           <h1 className="mt-6 text-balance text-5xl font-semibold leading-[1.05] tracking-tight text-white sm:text-6xl lg:text-7xl">
