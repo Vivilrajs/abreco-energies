@@ -93,10 +93,10 @@ export function WhySection({ settings }: { settings?: SettingsDTO }) {
 
           <Reveal>
             <Link
-              href="/supply"
-              className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-brand-strong"
+              href="/contact"
+              className="mt-9 inline-flex items-center gap-2 rounded-full bg-brand-red px-7 py-3.5 text-sm font-semibold text-white shadow-lg shadow-brand-red/25 transition hover:bg-brand-red-strong hover:scale-[1.03] active:scale-95"
             >
-              Discover more <ArrowRight size={16} />
+              Book your free consultation <ArrowRight size={16} />
             </Link>
           </Reveal>
         </div>

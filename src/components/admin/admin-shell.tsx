@@ -6,6 +6,11 @@ import {
   LayoutDashboard,
   Inbox,
   LayoutGrid,
+  Wrench,
+  Images,
+  Newspaper,
+  Quote,
+  HelpCircle,
   Settings,
   LogOut,
   ExternalLink,
@@ -17,6 +22,11 @@ const NAV = [
   { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
   { label: "Submissions", href: "/admin/submissions", icon: Inbox },
   { label: "Solutions", href: "/admin/solutions", icon: LayoutGrid },
+  { label: "Services", href: "/admin/services", icon: Wrench },
+  { label: "Blog", href: "/admin/blog", icon: Newspaper },
+  { label: "Projects", href: "/admin/projects", icon: Images },
+  { label: "Testimonials", href: "/admin/testimonials", icon: Quote },
+  { label: "FAQ", href: "/admin/faqs", icon: HelpCircle },
   { label: "Settings", href: "/admin/settings", icon: Settings },
 ];
 
@@ -38,8 +48,8 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="light flex min-h-screen bg-neutral-100 text-neutral-900">
       <aside className="fixed inset-y-0 left-0 flex w-64 flex-col border-r border-neutral-200 bg-white">
-        <div className="flex h-16 items-center border-b border-neutral-200 bg-[#05141f] px-6">
-          <Logo height={28} />
+        <div className="flex h-16 items-center border-b border-neutral-200 px-6">
+          <Logo height={32} />
         </div>
 
         <nav className="flex-1 space-y-1 p-4">
