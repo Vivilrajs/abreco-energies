@@ -214,10 +214,27 @@ export type ProjectDTO = {
   _id: string;
   title: string;
   category: string;
+  description: string;
   image: string;
+  slug: string;
   order: number;
   published: boolean;
 };
+
+function toProjectDTO(d: IProject & { _id: unknown }): ProjectDTO {
+  const id = String(d._id);
+  return {
+    _id: id,
+    title: d.title ?? "",
+    category: d.category ?? "",
+    description: d.description ?? "",
+    image: d.image,
+    // Fall back to the _id if no slug set yet
+    slug: d.slug || id,
+    order: d.order,
+    published: d.published,
+  };
+}
 
 export async function getPublishedProjects(): Promise<ProjectDTO[]> {
   try {
@@ -226,18 +243,29 @@ export async function getPublishedProjects(): Promise<ProjectDTO[]> {
       .sort({ order: 1 })
       .lean<(IProject & { _id: unknown })[]>();
     if (docs.length === 0) return PROJECTS_CONTENT;
-    return docs.map((d) => ({
-      _id: String(d._id),
-      title: d.title ?? "",
-      category: d.category ?? "",
-      image: d.image,
-      order: d.order,
-      published: d.published,
-    }));
+    return docs.map(toProjectDTO);
   } catch {
     return PROJECTS_CONTENT;
   }
 }
+
+export async function getProjectBySlug(
+  slug: string
+): Promise<ProjectDTO | null> {
+  try {
+    await connectDB();
+    // Match on slug field first, then fall back to _id
+    const doc = await Project.findOne({
+      $or: [{ slug }, { _id: slug }],
+      published: true,
+    }).lean<(IProject & { _id: unknown }) | null>();
+    if (!doc) return PROJECTS_CONTENT.find((p) => p.slug === slug) ?? null;
+    return toProjectDTO(doc);
+  } catch {
+    return PROJECTS_CONTENT.find((p) => p.slug === slug) ?? null;
+  }
+}
+
 
 export type TestimonialDTO = {
   _id: string;

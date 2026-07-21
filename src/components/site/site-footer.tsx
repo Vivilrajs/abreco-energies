@@ -45,7 +45,7 @@ export function SiteFooter({ settings }: { settings: SettingsDTO }) {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[1fr_auto_auto_auto_1fr]">
           {/* Brand blurb */}
           <div>
-            <Logo height={40} />
+            <Logo height={56} />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/50">
               Your partner in renewable energy solutions. Cleaner, smarter, more
               affordable power for your home or business.
