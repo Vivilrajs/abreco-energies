@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { SiteHeader } from "@/components/site/site-header";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Eyebrow } from "@/components/site/eyebrow";
@@ -55,7 +56,7 @@ export default async function ProjectsPage() {
       </section>
 
       {/* Grid */}
-      <section className="py-24">
+      <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-7xl px-6">
           {projects.length === 0 ? (
             <p className="text-center text-foreground/50">
@@ -68,7 +69,10 @@ export default async function ProjectsPage() {
                   key={p._id}
                   className={p.order % 5 === 0 ? "sm:col-span-2 sm:row-span-2" : ""}
                 >
-                  <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card">
+                  <Link
+                    href={`/projects/${p.slug}`}
+                    className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card"
+                  >
                     <div
                       className={
                         p.order % 5 === 0
@@ -103,7 +107,7 @@ export default async function ProjectsPage() {
                         )}
                       </div>
                     )}
-                  </div>
+                  </Link>
                 </StaggerItem>
               ))}
             </Stagger>

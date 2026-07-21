@@ -79,9 +79,10 @@ function MoreButton({ href, label }: { href: string; label: string }) {
 
 export function AboutSection({ settings }: { settings: SettingsDTO }) {
   return (
-    <section id="about" className="bg-background py-24">
-      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-2 lg:items-center">
-        <Reveal>
+    <section id="about" className="bg-background py-12 sm:py-24">
+      <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 lg:grid-cols-2 lg:items-center">
+        {/* Image — below text on mobile, left column on desktop */}
+        <Reveal className="order-last lg:order-first">
           <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -122,7 +123,7 @@ export function AboutSection({ settings }: { settings: SettingsDTO }) {
 /* ---------- Services ---------- */
 
 export function ServicesPreview({ services }: { services: ServiceDTO[] }) {
-  const shown = services.slice(0, 3);
+  const shown = services;
   if (shown.length === 0) return null;
 
   return (
