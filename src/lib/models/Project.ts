@@ -3,7 +3,7 @@ import mongoose, { Schema, model, models } from "mongoose";
 export interface IProject {
   title: string; // caption shown on hover
   category: string; // optional small label, e.g. "Residential"
-  image: string; // required — the project photo
+  image: string; // required - the project photo
   order: number;
   published: boolean;
   createdAt: Date;

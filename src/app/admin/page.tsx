@@ -94,7 +94,7 @@ export default async function AdminDashboard() {
                     <span className="text-neutral-400">· {r.email}</span>
                   </div>
                   <div className="text-sm text-neutral-500">
-                    {r.product || "—"} · {r.state || "—"}
+                    {r.product || "-"} · {r.state || "-"}
                   </div>
                 </div>
                 <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium capitalize text-neutral-600">

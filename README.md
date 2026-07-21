@@ -5,7 +5,7 @@ TypeScript, Tailwind v4, shadcn/ui, MongoDB (Mongoose).
 
 ## Features
 
-**Public site** (`/`) — dark, premium, single-page:
+**Public site** (`/`) - dark, premium, single-page:
 - Hero with background **video + ambient audio** (sound toggle; muted autoplay,
   audio starts on user interaction per browser policy). Falls back to an animated
   gradient when no video is set.
@@ -13,7 +13,7 @@ TypeScript, Tailwind v4, shadcn/ui, MongoDB (Mongoose).
 - "Our renewable energy solutions" cards (editable in admin).
 - Why-choose section, contact footer.
 
-**Admin panel** (`/admin`) — password-gated:
+**Admin panel** (`/admin`) - password-gated:
 - Dashboard with lead stats.
 - Submissions: filter by status, mark new/contacted/closed, delete, export CSV.
 - Solutions: full CRUD, publish/hide, reorder, live on the homepage.
@@ -25,9 +25,9 @@ TypeScript, Tailwind v4, shadcn/ui, MongoDB (Mongoose).
    ```bash
    cp .env.example .env.local
    ```
-   - `MONGODB_URI` — your MongoDB Atlas connection string.
-   - `ADMIN_PASSWORD` — the admin login password.
-   - `ADMIN_SESSION_TOKEN` — any long random string (session cookie value).
+   - `MONGODB_URI` - your MongoDB Atlas connection string.
+   - `ADMIN_PASSWORD` - the admin login password.
+   - `ADMIN_SESSION_TOKEN` - any long random string (session cookie value).
 
 2. Install and seed:
    ```bash

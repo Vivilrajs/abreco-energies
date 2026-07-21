@@ -196,7 +196,7 @@ export default function ProjectsAdminPage() {
                   <Input
                     value={editing.title ?? ""}
                     onChange={(e) => patch({ title: e.target.value })}
-                    placeholder="Rooftop solar — 8kW"
+                    placeholder="Rooftop solar - 8kW"
                   />
                 </Field>
                 <Field label="Category (optional)">

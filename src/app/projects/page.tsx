@@ -12,7 +12,7 @@ import { getPublishedProjects, getSettings } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Projects — Abreco Energies",
+  title: "Projects - Abreco Energies",
   description:
     "A gallery of our heat pump, air conditioning, and solar installations across Australia.",
 };

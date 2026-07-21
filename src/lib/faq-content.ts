@@ -1,4 +1,4 @@
-// Default FAQ — fallback when DB is empty/unreachable.
+// Default FAQ - fallback when DB is empty/unreachable.
 import type { FaqDTO } from "@/lib/data";
 
 export const FAQ_CONTENT: FaqDTO[] = [
@@ -38,7 +38,7 @@ export const FAQ_CONTENT: FaqDTO[] = [
     _id: "default-5",
     question: "Do you offer ongoing support after installation?",
     answer:
-      "Yes — our team stays on hand for servicing, warranty claims, and any questions long after your system is installed.",
+      "Yes - our team stays on hand for servicing, warranty claims, and any questions long after your system is installed.",
     order: 5,
     published: true,
   },

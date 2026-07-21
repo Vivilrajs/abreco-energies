@@ -178,7 +178,7 @@ export function ProductDetail({ product }: { product: SolutionDTO }) {
             Ready to save with {product.title}?
           </h2>
           <p className="text-foreground/60">
-            Book a free consultation — we handle the rebates and installation.
+            Book a free consultation - we handle the rebates and installation.
           </p>
           <Link
             href="/contact"

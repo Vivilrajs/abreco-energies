@@ -1,4 +1,4 @@
-// Default blog content — fallback when DB empty, mirrored by seed.
+// Default blog content - fallback when DB empty, mirrored by seed.
 import type { BlogPostDTO } from "@/lib/data";
 
 export const BLOG_CONTENT: BlogPostDTO[] = [
@@ -8,7 +8,7 @@ export const BLOG_CONTENT: BlogPostDTO[] = [
     title: "How many solar panels do you need for your home?",
     excerpt:
       "Sizing a solar system comes down to your energy use, roof space, and sunlight. Here's how to work out the right number of panels.",
-    body: "The number of panels you need depends on three things: your annual electricity use, the amount of usable roof space, and how much sun your location gets.\nA typical Australian home uses 15–20 kWh per day, which usually calls for a 6.6 kW system — around 16 to 18 panels.\nOur team runs a full assessment of your roof orientation, tilt, and shading, then designs a system that maximises output and rebate eligibility.",
+    body: "The number of panels you need depends on three things: your annual electricity use, the amount of usable roof space, and how much sun your location gets.\nA typical Australian home uses 15–20 kWh per day, which usually calls for a 6.6 kW system - around 16 to 18 panels.\nOur team runs a full assessment of your roof orientation, tilt, and shading, then designs a system that maximises output and rebate eligibility.",
     image: "/assets/blog/blog-1.png",
     author: "Abreco Energies",
     date: "2025-12-25T00:00:00.000Z",

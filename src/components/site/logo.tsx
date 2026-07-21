@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-/** Brand lockup — the abreco Energies wordmark (public/logo1.png, transparent). */
+/** Brand lockup - the abreco Energies wordmark (public/logo1.png, transparent). */
 export function Logo({
   className = "",
   height = 36,

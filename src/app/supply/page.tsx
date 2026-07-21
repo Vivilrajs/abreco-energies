@@ -15,7 +15,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Wholesale Supply — Abreco Energies",
+  title: "Wholesale Supply - Abreco Energies",
   description:
     "Wholesale supply of heat pumps, air conditioners, solar, and batteries for accredited providers and installers.",
 };
@@ -87,7 +87,7 @@ export default async function SupplyPage() {
           <HeroIn delay={0.22}>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60">
               We supply a wide range of high-quality products to companies,
-              Accredited Providers, and installers across Australia — making
+              Accredited Providers, and installers across Australia - making
               energy efficiency accessible, affordable, and hassle-free.
             </p>
           </HeroIn>
@@ -160,7 +160,7 @@ export default async function SupplyPage() {
               account or request a product list.
             </p>
           </Reveal>
-          {/* Dark spotlight card — LeadForm is styled for dark surfaces. */}
+          {/* Dark spotlight card - LeadForm is styled for dark surfaces. */}
           <Reveal delay={0.12} className="rounded-3xl border border-white/10 bg-neutral-900 p-6 shadow-2xl sm:p-8">
             <h3 className="text-lg font-semibold text-white">
               Request a product list

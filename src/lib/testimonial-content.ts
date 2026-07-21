@@ -1,4 +1,4 @@
-// Default testimonials — fallback when DB is empty/unreachable.
+// Default testimonials - fallback when DB is empty/unreachable.
 import type { TestimonialDTO } from "@/lib/data";
 
 export const TESTIMONIALS_CONTENT: TestimonialDTO[] = [
@@ -7,7 +7,7 @@ export const TESTIMONIALS_CONTENT: TestimonialDTO[] = [
     name: "Sarah M.",
     role: "Homeowner, Melbourne",
     quote:
-      "The whole process was seamless — from the free consultation to installation day. Our power bills dropped almost immediately.",
+      "The whole process was seamless - from the free consultation to installation day. Our power bills dropped almost immediately.",
     avatar: "/assets/testimonials/testi-1.png",
     rating: 5,
     order: 1,

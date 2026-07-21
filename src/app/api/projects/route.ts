@@ -34,7 +34,7 @@ export async function POST(req: NextRequest) {
   const parsed = projectSchema.safeParse(body);
   if (!parsed.success) {
     return NextResponse.json(
-      { error: "Invalid input — an image is required.", issues: parsed.error.flatten() },
+      { error: "Invalid input - an image is required.", issues: parsed.error.flatten() },
       { status: 400 }
     );
   }

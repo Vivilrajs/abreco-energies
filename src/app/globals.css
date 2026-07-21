@@ -177,7 +177,7 @@
   text-wrap: balance;
 }
 
-/* Public marketing pages only — admin keeps the default Geist stack. */
+/* Public marketing pages only - admin keeps the default Geist stack. */
 .site-font {
   font-family: var(--font-plus-jakarta), var(--font-sans), sans-serif;
 }

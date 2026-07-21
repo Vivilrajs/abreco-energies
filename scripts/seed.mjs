@@ -127,7 +127,7 @@ const solutions = [
     tagline: "Sun-powered savings, brighter home, lower bills!",
     headline: "Why Choose a Solar System?",
     intro:
-      "We help Australian households make the switch to clean, renewable energy. Our residential solar systems deliver reliable performance, long-term savings, and a brighter, greener future. Custom-designed solutions maximise your roof's potential — efficient, durable, and easy to maintain. SAA and CEC-accredited installers deliver safe, professional installations.",
+      "We help Australian households make the switch to clean, renewable energy. Our residential solar systems deliver reliable performance, long-term savings, and a brighter, greener future. Custom-designed solutions maximise your roof's potential - efficient, durable, and easy to maintain. SAA and CEC-accredited installers deliver safe, professional installations.",
     ctaLabel: "Get Now!",
     benefits: [
       { icon: "💰", text: "Save Money on Electricity – Generate your own clean power and see up to 30–40% reduction in energy bills." },
@@ -151,7 +151,7 @@ const solutions = [
     tagline: "Power your business with the sun, slash energy costs!",
     headline: "Why Choose Commercial Solar?",
     intro:
-      "We help Australian businesses take control of their energy future with reliable, cost-effective commercial solar. Tailored systems maximise energy efficiency and long-term returns. From consultation through installation and ongoing support, we handle the entire process — ensuring maximum return on investment. SAA and CEC-accredited experts deliver installations that meet the highest standards.",
+      "We help Australian businesses take control of their energy future with reliable, cost-effective commercial solar. Tailored systems maximise energy efficiency and long-term returns. From consultation through installation and ongoing support, we handle the entire process - ensuring maximum return on investment. SAA and CEC-accredited experts deliver installations that meet the highest standards.",
     ctaLabel: "Get Now!",
     benefits: [
       { icon: "💼", text: "Lower Operational Costs – Slash your electricity bills and stabilise future energy expenses." },
@@ -176,7 +176,7 @@ const solutions = [
     tagline: "Store the sun, use smarter, save longer!",
     headline: "Why Choose Solar Batteries?",
     intro:
-      "Advanced solar battery systems that help homes and businesses make the most of their solar power. Smart battery solutions store excess energy produced during the day for use at night, in cloudy weather, or when the grid goes down — giving you uninterrupted, affordable, sustainable power. CEC-accredited professionals deliver end-to-end service from energy assessment to aftercare.",
+      "Advanced solar battery systems that help homes and businesses make the most of their solar power. Smart battery solutions store excess energy produced during the day for use at night, in cloudy weather, or when the grid goes down - giving you uninterrupted, affordable, sustainable power. CEC-accredited professionals deliver end-to-end service from energy assessment to aftercare.",
     ctaLabel: "Get Now!",
     benefits: [
       { icon: "⚡", text: "Energy Independence – Generate, store, and use your own clean power on demand." },

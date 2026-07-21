@@ -15,6 +15,8 @@ const SOLAR = [
 const PAGES = [
   { label: "About", href: "/about" },
   { label: "Testimonials", href: "/testimonials" },
+  { label: "Projects", href: "/projects" },
+  { label: "Blog", href: "/blog" },
   { label: "FAQ", href: "/faq" },
   { label: "Get Started", href: "/get-started" },
 ];
@@ -28,8 +30,6 @@ const NAV_BEFORE_SOLAR = [
 const NAV_AFTER_SOLAR = [
   { label: "Services", href: "/services" },
   { label: "Supply", href: "/supply" },
-  { label: "Projects", href: "/projects" },
-  { label: "Blog", href: "/blog" },
 ];
 const NAV_LAST = [{ label: "Contact", href: "/contact" }];
 
@@ -100,12 +100,6 @@ export function SiteHeader() {
           <Link href="/supply" className={linkCls}>
             Supply
           </Link>
-          <Link href="/projects" className={linkCls}>
-            Projects
-          </Link>
-          <Link href="/blog" className={linkCls}>
-            Blog
-          </Link>
 
           {/* Pages dropdown */}
           <div className="group relative">
@@ -165,7 +159,7 @@ export function SiteHeader() {
               </Link>
             ))}
 
-            {/* Solar & Batteries collapsible — 4th item */}
+            {/* Solar & Batteries collapsible - 4th item */}
             <button
               onClick={() => setSolarOpen((v) => !v)}
               aria-expanded={solarOpen}
