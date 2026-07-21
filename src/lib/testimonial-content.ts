@@ -8,7 +8,7 @@ export const TESTIMONIALS_CONTENT: TestimonialDTO[] = [
     role: "Homeowner, Melbourne",
     quote:
       "The whole process was seamless — from the free consultation to installation day. Our power bills dropped almost immediately.",
-    avatar: "",
+    avatar: "/assets/testimonials/testi-1.png",
     rating: 5,
     order: 1,
     published: true,
@@ -19,7 +19,7 @@ export const TESTIMONIALS_CONTENT: TestimonialDTO[] = [
     role: "Homeowner, Brisbane",
     quote:
       "Professional installers, honest advice, and they handled all the rebate paperwork for us. Couldn't ask for more.",
-    avatar: "",
+    avatar: "/assets/testimonials/testi-2.png",
     rating: 5,
     order: 2,
     published: true,
@@ -30,7 +30,7 @@ export const TESTIMONIALS_CONTENT: TestimonialDTO[] = [
     role: "Business Owner, Sydney",
     quote:
       "We upgraded our warehouse to solar and a battery system. Great communication throughout and the savings speak for themselves.",
-    avatar: "",
+    avatar: "/assets/testimonials/testi-3.png",
     rating: 5,
     order: 3,
     published: true,
