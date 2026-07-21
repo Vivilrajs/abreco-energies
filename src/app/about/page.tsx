@@ -15,7 +15,7 @@ import { getSettings } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "About — Abreco Energies",
+  title: "About - Abreco Energies",
   description:
     "Abreco Energies is a leading supplier and installer of energy-efficient heat pumps, air conditioning, and solar solutions across Australia.",
 };
@@ -34,7 +34,7 @@ const VALUES = [
   {
     icon: Leaf,
     title: "Sustainability first",
-    body: "Every install cuts running costs and carbon — good for your wallet and the planet.",
+    body: "Every install cuts running costs and carbon - good for your wallet and the planet.",
   },
   {
     icon: Users,
@@ -112,7 +112,7 @@ export default async function AboutPage() {
               Abreco Energies is a leading supplier and installer of
               energy-efficient heat pumps, air conditioners, and solar systems.
               Wherever you are in Australia, we help you save energy and reduce
-              costs — handling the rebates and installation from start to finish.
+              costs - handling the rebates and installation from start to finish.
             </p>
             <div className="mt-8 grid grid-cols-3 gap-4">
               {[

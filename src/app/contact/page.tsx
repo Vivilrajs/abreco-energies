@@ -14,7 +14,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Contact — Abreco Energies",
+  title: "Contact - Abreco Energies",
   description:
     "Book a free consultation for heat pumps, air conditioning, and solar solutions.",
 };
@@ -96,7 +96,7 @@ export default async function ContactPage() {
               Book your free consultation
             </h2>
             <p className="mt-1 text-sm text-white/50">
-              Tell us what you need — we&apos;ll be in touch within one business
+              Tell us what you need - we&apos;ll be in touch within one business
               day.
             </p>
             <div className="mt-6">

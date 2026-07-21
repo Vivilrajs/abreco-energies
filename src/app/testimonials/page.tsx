@@ -14,7 +14,7 @@ import type { TestimonialDTO } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Testimonials — Abreco Energies",
+  title: "Testimonials - Abreco Energies",
   description:
     "What our customers say about their heat pump, air conditioning, and solar installations.",
 };

@@ -24,8 +24,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = await getPostBySlug(slug);
-  if (!post) return { title: "Article — Abreco Energies" };
-  return { title: `${post.title} — Abreco Energies`, description: post.excerpt };
+  if (!post) return { title: "Article - Abreco Energies" };
+  return { title: `${post.title} - Abreco Energies`, description: post.excerpt };
 }
 
 export default async function BlogDetailPage({

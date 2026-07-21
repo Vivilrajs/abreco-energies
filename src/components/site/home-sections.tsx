@@ -123,7 +123,6 @@ export function AboutSection({ settings }: { settings: SettingsDTO }) {
 
 export function ServicesPreview({ services }: { services: ServiceDTO[] }) {
   const shown = services.slice(0, 3);
-  const hasMore = services.length > 3;
   if (shown.length === 0) return null;
 
   return (
@@ -132,7 +131,7 @@ export function ServicesPreview({ services }: { services: ServiceDTO[] }) {
         <SectionHead
           eyebrow="Our Services"
           title="Renewable energy solutions we deliver"
-          subtitle="Solar, batteries, heat pumps and cooling — designed, installed, and rebate-handled."
+          subtitle="Solar, batteries, heat pumps and cooling - designed, installed, and rebate-handled."
         />
         <Stagger className="mt-14 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((s) => (
@@ -175,7 +174,7 @@ export function ServicesPreview({ services }: { services: ServiceDTO[] }) {
             </StaggerItem>
           ))}
         </Stagger>
-        {hasMore && <MoreButton href="/services" label="View all services" />}
+        <MoreButton href="/services" label="View all services" />
       </div>
     </section>
   );
@@ -189,7 +188,6 @@ export function TestimonialsPreview({
   testimonials: TestimonialDTO[];
 }) {
   const shown = testimonials.slice(0, 3);
-  const hasMore = testimonials.length > 3;
   if (shown.length === 0) return null;
 
   return (
@@ -198,8 +196,6 @@ export function TestimonialsPreview({
         <SectionHead
           eyebrow="Testimonials"
           title="Loved by homeowners & businesses"
-          moreHref="/testimonials"
-          hasMore={hasMore}
         />
         <Stagger className="mt-14 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {shown.map((t) => (
@@ -207,7 +203,7 @@ export function TestimonialsPreview({
               <div className="flex h-full flex-col rounded-3xl border border-border bg-card p-7">
                 <Quote className="text-brand" size={28} />
                 <p className="mt-4 flex-1 leading-relaxed text-foreground/70">
-                  “{t.quote}”
+                  &ldquo;{t.quote}&rdquo;
                 </p>
                 <div className="mt-6 flex items-center gap-1 text-brand">
                   {Array.from({ length: 5 }).map((_, i) => (
@@ -244,9 +240,7 @@ export function TestimonialsPreview({
             </StaggerItem>
           ))}
         </Stagger>
-        {hasMore && (
-          <MoreButton href="/testimonials" label="Read more reviews" />
-        )}
+        <MoreButton href="/testimonials" label="Read all reviews" />
       </div>
     </section>
   );

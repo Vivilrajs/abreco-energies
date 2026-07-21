@@ -100,7 +100,7 @@ export default function SolutionsPage() {
       setEditing(null);
       load();
     } else {
-      toast.error("Save failed — check the slug is unique.");
+      toast.error("Save failed - check the slug is unique.");
     }
   }
 
@@ -324,7 +324,7 @@ export default function SolutionsPage() {
                     />
                   </Field>
                 </div>
-                <Field label="Hero video (optional — shown instead of image)">
+                <Field label="Hero video (optional - shown instead of image)">
                   <ImageUpload
                     kind="video"
                     value={editing.heroVideo ?? ""}

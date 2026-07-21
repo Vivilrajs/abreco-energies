@@ -16,9 +16,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const service = await getServiceBySlug(slug);
-  if (!service) return { title: "Not found — Abreco Energies" };
+  if (!service) return { title: "Not found - Abreco Energies" };
   return {
-    title: `${service.title} — Abreco Energies`,
+    title: `${service.title} - Abreco Energies`,
     description: service.description,
   };
 }

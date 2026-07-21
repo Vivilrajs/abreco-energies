@@ -83,7 +83,7 @@ export function StaggerItem({
   );
 }
 
-/** Subtle lift on hover — for cards. */
+/** Subtle lift on hover - for cards. */
 export function HoverLift({
   children,
   className,
@@ -103,7 +103,7 @@ export function HoverLift({
   );
 }
 
-/** Hero entrance — runs on mount, not scroll. */
+/** Hero entrance - runs on mount, not scroll. */
 export function HeroIn({
   children,
   delay = 0,

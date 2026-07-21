@@ -15,7 +15,7 @@ import { getPublishedServices, getSettings } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Services — Abreco Energies",
+  title: "Services - Abreco Energies",
   description:
     "Personalized solar, heat pump, air conditioning, and battery solutions for renewable energy.",
 };
@@ -57,7 +57,7 @@ export default async function ServicesPage() {
           <HeroIn delay={0.22}>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-white/60">
               From solar and batteries to heat pumps and cooling, we deliver
-              clean-energy systems tailored to your home or business — rebates
+              clean-energy systems tailored to your home or business - rebates
               and installation handled.
             </p>
           </HeroIn>
@@ -118,7 +118,7 @@ export default async function ServicesPage() {
             Not sure which solution fits?
           </h2>
           <p className="text-foreground/60">
-            Book a free consultation — we&apos;ll assess your needs and handle
+            Book a free consultation - we&apos;ll assess your needs and handle
             the rebates.
           </p>
           <Link

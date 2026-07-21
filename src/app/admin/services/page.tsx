@@ -73,7 +73,7 @@ export default function ServicesAdminPage() {
       setEditing(null);
       load();
     } else {
-      toast.error("Save failed — check the slug is unique.");
+      toast.error("Save failed - check the slug is unique.");
     }
   }
 

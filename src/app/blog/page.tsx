@@ -14,7 +14,7 @@ import { getPublishedPosts, getSettings } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Blog — Abreco Energies",
+  title: "Blog - Abreco Energies",
   description: "Latest solar insights, guides, and renewable energy news.",
 };
 

@@ -181,15 +181,15 @@ export default function SubmissionsPage() {
               filtered.map((r) => (
                 <tr key={r._id} className="hover:bg-neutral-50">
                   <td className="px-5 py-3 font-medium">
-                    {r.firstName || "—"}
+                    {r.firstName || "-"}
                   </td>
                   <td className="px-5 py-3">
                     <div>{r.email}</div>
                     <div className="text-neutral-400">{r.phone}</div>
                   </td>
-                  <td className="px-5 py-3">{r.product || "—"}</td>
+                  <td className="px-5 py-3">{r.product || "-"}</td>
                   <td className="px-5 py-3">
-                    {r.state || "—"}
+                    {r.state || "-"}
                     {r.postcode ? ` · ${r.postcode}` : ""}
                   </td>
                   <td className="px-5 py-3 text-neutral-500">

@@ -1,4 +1,4 @@
-// Default services content — fallback when DB empty, mirrored by seed.
+// Default services content - fallback when DB empty, mirrored by seed.
 import type { ServiceDTO } from "@/lib/data";
 
 export const SERVICES_CONTENT: ServiceDTO[] = [

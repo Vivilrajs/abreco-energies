@@ -16,7 +16,7 @@ const STEPS = [
   {
     icon: HardHat,
     title: "Professional install",
-    body: "Licensed, accredited installers complete the job cleanly and safely — usually within a day.",
+    body: "Licensed, accredited installers complete the job cleanly and safely - usually within a day.",
   },
   {
     icon: Sparkles,

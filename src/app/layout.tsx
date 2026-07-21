@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-// Public marketing pages only — applied via `.site-font`, not the global font stack,
+// Public marketing pages only - applied via `.site-font`, not the global font stack,
 // so the admin panel keeps its existing Geist typography untouched.
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-plus-jakarta",
@@ -22,7 +22,7 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Abreco Energies — Renewable Energy Solutions",
+  title: "Abreco Energies - Renewable Energy Solutions",
   description:
     "Premium heat pumps, air conditioning, and solar solutions across Australia. Your partner in renewable energy.",
 };

@@ -1,7 +1,7 @@
 import mongoose, { Schema, model, models } from "mongoose";
 
 export interface ISiteSettings {
-  key: string; // always "default" — single settings document
+  key: string; // always "default" - single settings document
   heroTitle: string;
   heroSubtitle: string;
   heroBody: string;

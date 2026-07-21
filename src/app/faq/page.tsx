@@ -10,7 +10,7 @@ import { getPublishedFaqs, getSettings } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "FAQ — Abreco Energies",
+  title: "FAQ - Abreco Energies",
   description:
     "Answers to common questions about heat pumps, air conditioning, solar, rebates, and installation.",
 };

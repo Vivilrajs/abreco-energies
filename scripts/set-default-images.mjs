@@ -67,6 +67,6 @@ for (let i = 0; i < testi.length; i++) {
 }
 
 console.log(
-  `Updated images — projects:${projects.length} testimonials:${testi.length} (services/blog by slug)`
+  `Updated images - projects:${projects.length} testimonials:${testi.length} (services/blog by slug)`
 );
 await mongoose.disconnect();

@@ -71,14 +71,14 @@ export function Hero({ settings }: { settings: SettingsDTO }) {
         </audio>
       )}
 
-      {/* Sound toggle */}
-      <button
+      {/* Sound toggle — temporarily disabled */}
+      {/* <button
         onClick={toggleSound}
         aria-label={soundOn ? "Mute ambient sound" : "Play ambient sound"}
         className="absolute right-5 top-24 z-20 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-black/40 text-white shadow-lg backdrop-blur-md transition hover:bg-black/60"
       >
         {soundOn ? <Volume2 size={18} /> : <VolumeX size={18} />}
-      </button>
+      </button> */}
 
       {/* Content */}
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 px-6 py-32 lg:grid-cols-2 lg:items-center">
@@ -107,7 +107,7 @@ export function Hero({ settings }: { settings: SettingsDTO }) {
             Book your free consultation
           </h2>
           <p className="mt-1 text-sm text-white/50">
-            Tell us what you need — we&apos;ll handle the rebates.
+            Tell us what you need - we&apos;ll handle the rebates.
           </p>
           <div className="mt-6">
             <LeadForm />

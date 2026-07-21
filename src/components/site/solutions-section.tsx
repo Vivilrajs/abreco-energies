@@ -14,7 +14,7 @@ export function SolutionsSection({ solutions }: { solutions: SolutionDTO[] }) {
           </h2>
           <p className="mt-4 text-lg text-foreground/60">
             Premium systems, trusted brands, and government rebates handled for
-            you — from first quote to final install.
+            you - from first quote to final install.
           </p>
         </Reveal>
 

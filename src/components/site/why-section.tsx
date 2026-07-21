@@ -41,7 +41,7 @@ export function WhySection({ settings }: { settings?: SettingsDTO }) {
               <div className="hero-fallback h-full w-full animate-brand-drift" />
             )}
           </div>
-          {/* Experience badge — overlaps the image bottom-left */}
+          {/* Experience badge - overlaps the image bottom-left */}
           <div className="absolute -bottom-6 left-6 flex items-center gap-4 rounded-2xl border border-foreground/10 bg-card px-6 py-4 shadow-xl">
             <div className="text-5xl font-semibold text-brand">14</div>
             <div className="text-sm font-medium leading-tight text-foreground/70">
@@ -62,7 +62,7 @@ export function WhySection({ settings }: { settings?: SettingsDTO }) {
             <p className="mt-5 text-lg leading-relaxed text-foreground/60">
               With years of experience in energy-efficient heating, cooling, and
               solar, Abreco Energies understands how smart technology benefits
-              both your home or business and the environment — fast, expert
+              both your home or business and the environment - fast, expert
               consultations followed by professional installation.
             </p>
           </Reveal>

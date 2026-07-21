@@ -1,10 +1,10 @@
-// Default project gallery — fallback when DB is empty/unreachable.
+// Default project gallery - fallback when DB is empty/unreachable.
 import type { ProjectDTO } from "@/lib/data";
 
 export const PROJECTS_CONTENT: ProjectDTO[] = [
   {
     _id: "default-1",
-    title: "Rooftop Solar — 8kW System",
+    title: "Rooftop Solar - 8kW System",
     category: "Residential",
     image: "/assets/projects/proj-1.png",
     order: 1,

@@ -15,13 +15,13 @@ import { getSettings } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Get Started — Book a Free Consultation | Abreco Energies",
+  title: "Get Started - Book a Free Consultation | Abreco Energies",
   description:
     "Book your free, no-obligation energy consultation. We handle the rebates and installation from start to finish.",
 };
 
 const PERKS = [
-  { icon: BadgeDollarSign, text: "Free, no-obligation quote — rebates handled for you" },
+  { icon: BadgeDollarSign, text: "Free, no-obligation quote - rebates handled for you" },
   { icon: Clock, text: "We respond within one business day" },
   { icon: Phone, text: "Expert consultation, tailored to your property" },
 ];
@@ -29,7 +29,7 @@ const PERKS = [
 const STEPS = [
   "Tell us what you need using the form",
   "We assess your property and design a system",
-  "Accredited installers complete the job — usually in a day",
+  "Accredited installers complete the job - usually in a day",
 ];
 
 export default async function GetStartedPage() {
@@ -67,7 +67,7 @@ export default async function GetStartedPage() {
             </HeroIn>
             <HeroIn delay={0.2}>
               <p className="mt-5 max-w-md text-lg text-white/70">
-                Book a free consultation today. No obligation, no pressure — just
+                Book a free consultation today. No obligation, no pressure - just
                 a clear plan and honest advice.
               </p>
             </HeroIn>
@@ -85,7 +85,7 @@ export default async function GetStartedPage() {
             </Stagger>
           </div>
 
-          {/* Dark form card — LeadForm styled for dark surfaces */}
+          {/* Dark form card - LeadForm styled for dark surfaces */}
           <Reveal
             delay={0.15}
             className="rounded-3xl border border-white/10 bg-neutral-900 p-6 shadow-2xl sm:p-8"
@@ -94,7 +94,7 @@ export default async function GetStartedPage() {
               Book your free consultation
             </h2>
             <p className="mt-1 text-sm text-white/50">
-              Tell us what you need — we&apos;ll be in touch within one business
+              Tell us what you need - we&apos;ll be in touch within one business
               day.
             </p>
             <div className="mt-6">
