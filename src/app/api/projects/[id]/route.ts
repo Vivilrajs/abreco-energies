@@ -3,6 +3,7 @@ import { z } from "zod";
 import { connectDB } from "@/lib/mongodb";
 import Project from "@/lib/models/Project";
 import { isAuthed } from "@/lib/auth";
+import { updateLocalItem, deleteLocalItem } from "@/lib/local-db";
 
 const updateSchema = z.object({
   title: z.string().max(160).optional(),
@@ -27,14 +28,26 @@ export async function PUT(
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
 
-  await connectDB();
-  const updated = await Project.findByIdAndUpdate(id, parsed.data, {
-    new: true,
-  }).lean();
-  if (!updated) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (id.startsWith("local-")) {
+    const updatedLocal = updateLocalItem("projects", id, parsed.data);
+    if (!updatedLocal) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ project: updatedLocal });
   }
-  return NextResponse.json({ project: updated });
+
+  try {
+    await connectDB();
+    const updated = await Project.findByIdAndUpdate(id, parsed.data, {
+      new: true,
+    }).lean();
+    if (!updated) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ project: updated });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }
 
 export async function DELETE(
@@ -46,7 +59,20 @@ export async function DELETE(
   }
 
   const { id } = await params;
-  await connectDB();
-  await Project.findByIdAndDelete(id);
-  return NextResponse.json({ ok: true });
+
+  if (id.startsWith("local-")) {
+    const deleted = deleteLocalItem("projects", id);
+    if (!deleted) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    await connectDB();
+    await Project.findByIdAndDelete(id);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }

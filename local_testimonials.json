@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Sarah M.",
+    "role": "Homeowner, Melbourne",
+    "quote": "The whole process was seamless - from the free consultation to installation day. Our power bills dropped almost immediately.",
+    "avatar": "",
+    "rating": 5,
+    "order": 2,
+    "published": true,
+    "_id": "local-1785222875184-xjozazg",
+    "createdAt": "2026-07-28T07:14:35.184Z",
+    "updatedAt": "2026-07-28T07:14:35.184Z"
+  },
+  {
+    "name": "James T.",
+    "role": " Homeowner, Melbourne ",
+    "quote": "Professional installers, honest advice, and they handled all the rebate paperwork for us. Couldn't ask for more.",
+    "avatar": "",
+    "rating": 5,
+    "order": 2,
+    "published": true,
+    "_id": "local-1785222939224-2eq4sux",
+    "createdAt": "2026-07-28T07:15:39.224Z",
+    "updatedAt": "2026-07-28T08:21:31.472Z"
+  },
+  {
+    "name": "Priya K. ",
+    "role": " Business Owner, Melbourne ",
+    "quote": "We upgraded our warehouse to solar and a battery system. Great communication throughout and the savings speak for themselves.",
+    "avatar": "",
+    "rating": 5,
+    "order": 3,
+    "published": true,
+    "_id": "local-1785223012806-cnc0mr5",
+    "createdAt": "2026-07-28T07:16:52.806Z",
+    "updatedAt": "2026-07-28T08:21:50.407Z"
+  }
+]

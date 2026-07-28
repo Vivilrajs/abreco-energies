@@ -3,6 +3,7 @@ import { z } from "zod";
 import { connectDB } from "@/lib/mongodb";
 import Submission, { PRODUCTS, STATES } from "@/lib/models/Submission";
 import { isAuthed } from "@/lib/auth";
+import { getLocalSubmissions, saveLocalSubmission } from "@/lib/local-db";
 
 const submissionSchema = z.object({
   firstName: z.string().max(120).optional(),
@@ -16,19 +17,47 @@ const submissionSchema = z.object({
 
 // Public: create a lead.
 export async function POST(req: NextRequest) {
-  const body = await req.json().catch(() => null);
-  const parsed = submissionSchema.safeParse(body);
+  try {
+    const body = await req.json().catch(() => null);
+    const parsed = submissionSchema.safeParse(body);
 
-  if (!parsed.success) {
+    if (!parsed.success) {
+      return NextResponse.json(
+        { error: "Invalid input", issues: parsed.error.flatten() },
+        { status: 400 }
+      );
+    }
+
+    try {
+      await connectDB();
+      const created = await Submission.create(parsed.data);
+      return NextResponse.json({ ok: true, id: created._id }, { status: 201 });
+    } catch (dbError) {
+      console.warn("⚠️ MongoDB connection failed, falling back to local file storage:", dbError);
+      
+      // Fallback: save to local JSON file
+      const localId = "local-" + Date.now() + "-" + Math.random().toString(36).substring(2, 9);
+      const createdLocal = saveLocalSubmission({
+        _id: localId,
+        firstName: parsed.data.firstName,
+        email: parsed.data.email,
+        phone: parsed.data.phone,
+        state: parsed.data.state,
+        postcode: parsed.data.postcode,
+        product: parsed.data.product,
+        message: parsed.data.message,
+        status: "new",
+      });
+      
+      return NextResponse.json({ ok: true, id: createdLocal._id, local: true }, { status: 201 });
+    }
+  } catch (error: any) {
+    console.error("Submission error:", error);
     return NextResponse.json(
-      { error: "Invalid input", issues: parsed.error.flatten() },
-      { status: 400 }
+      { error: "Submission failed", details: error?.message || String(error) },
+      { status: 500 }
     );
   }
-
-  await connectDB();
-  const created = await Submission.create(parsed.data);
-  return NextResponse.json({ ok: true, id: created._id }, { status: 201 });
 }
 
 // Admin: list leads.
@@ -37,7 +66,20 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  await connectDB();
-  const submissions = await Submission.find().sort({ createdAt: -1 }).lean();
-  return NextResponse.json({ submissions });
+  const localSubmissions = getLocalSubmissions();
+  let dbSubmissions: any[] = [];
+
+  try {
+    await connectDB();
+    dbSubmissions = await Submission.find().sort({ createdAt: -1 }).lean();
+  } catch (dbError) {
+    console.warn("⚠️ Could not load submissions from MongoDB, reading local files only:", dbError);
+  }
+
+  // Merge and sort by createdAt descending
+  const allSubmissions = [...localSubmissions, ...dbSubmissions].sort((a, b) => {
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
+  return NextResponse.json({ submissions: allSubmissions });
 }

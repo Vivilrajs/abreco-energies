@@ -44,7 +44,11 @@ export default function SettingsPage() {
     });
     setSaving(false);
     if (res.ok) toast.success("Settings saved");
-    else toast.error("Save failed");
+    else {
+      const errData = await res.json().catch(() => null);
+      const errMsg = errData?.error || errData?.message || "check connection";
+      toast.error(`Save failed: ${errMsg}`);
+    }
   }
 
   if (!form) {

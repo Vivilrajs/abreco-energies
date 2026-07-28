@@ -3,6 +3,7 @@ import { z } from "zod";
 import { connectDB } from "@/lib/mongodb";
 import Service from "@/lib/models/Service";
 import { isAuthed } from "@/lib/auth";
+import { updateLocalItem, deleteLocalItem } from "@/lib/local-db";
 
 const updateSchema = z.object({
   slug: z.string().min(1).max(80).optional(),
@@ -30,14 +31,26 @@ export async function PUT(
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
 
-  await connectDB();
-  const updated = await Service.findByIdAndUpdate(id, parsed.data, {
-    new: true,
-  }).lean();
-  if (!updated) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (id.startsWith("local-")) {
+    const updatedLocal = updateLocalItem("services", id, parsed.data);
+    if (!updatedLocal) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ service: updatedLocal });
   }
-  return NextResponse.json({ service: updated });
+
+  try {
+    await connectDB();
+    const updated = await Service.findByIdAndUpdate(id, parsed.data, {
+      new: true,
+    }).lean();
+    if (!updated) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ service: updated });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }
 
 export async function DELETE(
@@ -49,7 +62,20 @@ export async function DELETE(
   }
 
   const { id } = await params;
-  await connectDB();
-  await Service.findByIdAndDelete(id);
-  return NextResponse.json({ ok: true });
+
+  if (id.startsWith("local-")) {
+    const deleted = deleteLocalItem("services", id);
+    if (!deleted) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    await connectDB();
+    await Service.findByIdAndDelete(id);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }

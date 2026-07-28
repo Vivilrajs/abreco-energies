@@ -3,6 +3,7 @@ import { z } from "zod";
 import { connectDB } from "@/lib/mongodb";
 import Testimonial from "@/lib/models/Testimonial";
 import { isAuthed } from "@/lib/auth";
+import { updateLocalItem, deleteLocalItem } from "@/lib/local-db";
 
 const updateSchema = z.object({
   name: z.string().min(1).max(120).optional(),
@@ -27,14 +28,27 @@ export async function PUT(
   if (!parsed.success) {
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
-  await connectDB();
-  const updated = await Testimonial.findByIdAndUpdate(id, parsed.data, {
-    new: true,
-  }).lean();
-  if (!updated) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+
+  if (id.startsWith("local-")) {
+    const updatedLocal = updateLocalItem("testimonials", id, parsed.data);
+    if (!updatedLocal) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ testimonial: updatedLocal });
   }
-  return NextResponse.json({ testimonial: updated });
+
+  try {
+    await connectDB();
+    const updated = await Testimonial.findByIdAndUpdate(id, parsed.data, {
+      new: true,
+    }).lean();
+    if (!updated) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ testimonial: updated });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }
 
 export async function DELETE(
@@ -45,7 +59,20 @@ export async function DELETE(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   const { id } = await params;
-  await connectDB();
-  await Testimonial.findByIdAndDelete(id);
-  return NextResponse.json({ ok: true });
+
+  if (id.startsWith("local-")) {
+    const deleted = deleteLocalItem("testimonials", id);
+    if (!deleted) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    await connectDB();
+    await Testimonial.findByIdAndDelete(id);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }

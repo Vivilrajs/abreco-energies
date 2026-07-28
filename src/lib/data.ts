@@ -16,6 +16,7 @@ import { BLOG_CONTENT } from "@/lib/blog-content";
 import { PROJECTS_CONTENT } from "@/lib/project-content";
 import { TESTIMONIALS_CONTENT } from "@/lib/testimonial-content";
 import { FAQ_CONTENT } from "@/lib/faq-content";
+import { getLocalItems, getLocalSettings } from "@/lib/local-db";
 
 export type SolutionDTO = {
   _id: string;
@@ -73,7 +74,7 @@ export const DEFAULT_SETTINGS: SettingsDTO = {
   imageUrl: "",
   audioUrl: "/media/ambient.mp3",
   phone: "1300 000 000",
-  email: "admin@abrecoenergies.com",
+  email: "enquires@abrecoenergies.com",
   address: "Australia",
 };
 
@@ -142,16 +143,30 @@ function serviceToDTO(d: IService & { _id: unknown }): ServiceDTO {
 }
 
 export async function getPublishedServices(): Promise<ServiceDTO[]> {
+  const localItems = getLocalItems("services").filter(s => s.published !== false);
+  let dbItems: any[] = [];
   try {
     await connectDB();
     const docs = await Service.find({ published: true })
       .sort({ order: 1 })
       .lean<(IService & { _id: unknown })[]>();
-    if (docs.length === 0) return SERVICES_CONTENT;
-    return docs.map(serviceToDTO);
+    dbItems = docs.map(serviceToDTO);
   } catch {
+    // fallback
+  }
+
+  if (localItems.length === 0 && dbItems.length === 0) {
     return SERVICES_CONTENT;
   }
+
+  const merged = [...localItems];
+  dbItems.forEach(dbItem => {
+    if (!merged.some(item => item.slug === dbItem.slug)) {
+      merged.push(dbItem);
+    }
+  });
+
+  return merged.sort((a, b) => (a.order || 0) - (b.order || 0));
 }
 
 export async function getServiceBySlug(
@@ -185,16 +200,30 @@ function blogToDTO(d: IBlogPost & { _id: unknown }): BlogPostDTO {
 }
 
 export async function getPublishedPosts(): Promise<BlogPostDTO[]> {
+  const localItems = getLocalItems("posts").filter(p => p.published !== false);
+  let dbItems: any[] = [];
   try {
     await connectDB();
     const docs = await BlogPost.find({ published: true })
       .sort({ date: -1 })
       .lean<(IBlogPost & { _id: unknown })[]>();
-    if (docs.length === 0) return BLOG_CONTENT;
-    return docs.map(blogToDTO);
+    dbItems = docs.map(blogToDTO);
   } catch {
+    // fallback
+  }
+
+  if (localItems.length === 0 && dbItems.length === 0) {
     return BLOG_CONTENT;
   }
+
+  const merged = [...localItems];
+  dbItems.forEach(dbItem => {
+    if (!merged.some(item => item.slug === dbItem.slug)) {
+      merged.push(dbItem);
+    }
+  });
+
+  return merged.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 }
 
 export async function getPostBySlug(slug: string): Promise<BlogPostDTO | null> {
@@ -237,16 +266,35 @@ function toProjectDTO(d: IProject & { _id: unknown }): ProjectDTO {
 }
 
 export async function getPublishedProjects(): Promise<ProjectDTO[]> {
+  const localItems = getLocalItems("projects")
+    .filter(p => p.published !== false)
+    .map(p => ({
+      ...p,
+      slug: p.slug || p._id || `project-${p.order}`,
+    }));
+  let dbItems: any[] = [];
   try {
     await connectDB();
     const docs = await Project.find({ published: true })
       .sort({ order: 1 })
       .lean<(IProject & { _id: unknown })[]>();
-    if (docs.length === 0) return PROJECTS_CONTENT;
-    return docs.map(toProjectDTO);
+    dbItems = docs.map(toProjectDTO);
   } catch {
+    // fallback
+  }
+
+  if (localItems.length === 0 && dbItems.length === 0) {
     return PROJECTS_CONTENT;
   }
+
+  const merged = [...localItems];
+  dbItems.forEach(dbItem => {
+    if (!merged.some(item => item.slug === dbItem.slug || item.title === dbItem.title)) {
+      merged.push(dbItem);
+    }
+  });
+
+  return merged.sort((a, b) => (a.order || 0) - (b.order || 0));
 }
 
 export async function getProjectBySlug(
@@ -279,13 +327,14 @@ export type TestimonialDTO = {
 };
 
 export async function getPublishedTestimonials(): Promise<TestimonialDTO[]> {
+  const localItems = getLocalItems("testimonials").filter(t => t.published !== false);
+  let dbItems: any[] = [];
   try {
     await connectDB();
     const docs = await Testimonial.find({ published: true })
       .sort({ order: 1 })
       .lean<(ITestimonial & { _id: unknown })[]>();
-    if (docs.length === 0) return TESTIMONIALS_CONTENT;
-    return docs.map((d) => ({
+    dbItems = docs.map((d) => ({
       _id: String(d._id),
       name: d.name,
       role: d.role ?? "",
@@ -296,8 +345,21 @@ export async function getPublishedTestimonials(): Promise<TestimonialDTO[]> {
       published: d.published,
     }));
   } catch {
+    // fallback
+  }
+
+  if (localItems.length === 0 && dbItems.length === 0) {
     return TESTIMONIALS_CONTENT;
   }
+
+  const merged = [...localItems];
+  dbItems.forEach(dbItem => {
+    if (!merged.some(item => item.name === dbItem.name && item.quote === dbItem.quote)) {
+      merged.push(dbItem);
+    }
+  });
+
+  return merged.sort((a, b) => (a.order || 0) - (b.order || 0));
 }
 
 export type FaqDTO = {
@@ -309,13 +371,14 @@ export type FaqDTO = {
 };
 
 export async function getPublishedFaqs(): Promise<FaqDTO[]> {
+  const localItems = getLocalItems("faqs").filter(f => f.published !== false);
+  let dbItems: any[] = [];
   try {
     await connectDB();
     const docs = await Faq.find({ published: true })
       .sort({ order: 1 })
       .lean<(IFaq & { _id: unknown })[]>();
-    if (docs.length === 0) return FAQ_CONTENT;
-    return docs.map((d) => ({
+    dbItems = docs.map((d) => ({
       _id: String(d._id),
       question: d.question,
       answer: d.answer,
@@ -323,15 +386,29 @@ export async function getPublishedFaqs(): Promise<FaqDTO[]> {
       published: d.published,
     }));
   } catch {
+    // fallback
+  }
+
+  if (localItems.length === 0 && dbItems.length === 0) {
     return FAQ_CONTENT;
   }
+
+  const merged = [...localItems];
+  dbItems.forEach(dbItem => {
+    if (!merged.some(item => item.question === dbItem.question)) {
+      merged.push(dbItem);
+    }
+  });
+
+  return merged.sort((a, b) => (a.order || 0) - (b.order || 0));
 }
 
 export async function getSettings(): Promise<SettingsDTO> {
+  const localSettings = getLocalSettings(DEFAULT_SETTINGS);
   try {
     await connectDB();
     const doc = await SiteSettings.findOne({ key: "default" }).lean();
-    if (!doc) return DEFAULT_SETTINGS;
+    if (!doc) return localSettings;
     return {
       key: "default",
       heroTitle: doc.heroTitle,
@@ -345,6 +422,6 @@ export async function getSettings(): Promise<SettingsDTO> {
       address: doc.address,
     };
   } catch {
-    return DEFAULT_SETTINGS;
+    return localSettings;
   }
 }

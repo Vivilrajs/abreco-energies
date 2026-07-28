@@ -31,7 +31,7 @@ const SiteSettingsSchema = new Schema<ISiteSettings>(
     imageUrl: { type: String, default: "" },
     audioUrl: { type: String, default: "/media/ambient.mp3" },
     phone: { type: String, default: "1300 000 000" },
-    email: { type: String, default: "admin@abrecoenergies.com" },
+    email: { type: String, default: "enquires@abrecoenergies.com" },
     address: { type: String, default: "Australia" },
   },
   { timestamps: true }

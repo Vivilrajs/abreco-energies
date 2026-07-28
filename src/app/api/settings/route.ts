@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/mongodb";
 import SiteSettings from "@/lib/models/SiteSettings";
 import { isAuthed } from "@/lib/auth";
 import { DEFAULT_SETTINGS } from "@/lib/data";
+import { getLocalSettings, saveLocalSettings } from "@/lib/local-db";
 
 const settingsSchema = z.object({
   heroTitle: z.string().max(120).optional(),
@@ -26,12 +27,16 @@ async function getOrCreate() {
 }
 
 export async function GET() {
+  const localSettings = getLocalSettings(DEFAULT_SETTINGS);
   try {
     await connectDB();
     const settings = await getOrCreate();
-    return NextResponse.json({ settings });
-  } catch {
-    return NextResponse.json({ settings: DEFAULT_SETTINGS });
+    // Return merged settings, preferring DB if online, falling back to local
+    const merged = { ...DEFAULT_SETTINGS, ...localSettings, ...settings.toObject() };
+    return NextResponse.json({ settings: merged });
+  } catch (error) {
+    console.warn("⚠️ Could not load settings from MongoDB, using local fallback:", error);
+    return NextResponse.json({ settings: localSettings });
   }
 }
 
@@ -43,8 +48,13 @@ export async function PUT(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const parsed = settingsSchema.safeParse(body);
   if (!parsed.success) {
-    return NextResponse.json({ error: "Invalid input" }, { status: 400 });
+    const errorMsg = parsed.error.issues.map(i => `${i.path.join(".")}: ${i.message}`).join(", ");
+    return NextResponse.json({ error: `Invalid input - ${errorMsg}` }, { status: 400 });
   }
+
+  // Save to local file as backup first
+  const currentLocal = getLocalSettings(DEFAULT_SETTINGS);
+  const updatedLocal = saveLocalSettings({ ...currentLocal, ...parsed.data });
 
   try {
     await connectDB();
@@ -54,10 +64,8 @@ export async function PUT(req: NextRequest) {
       { new: true, upsert: true }
     ).lean();
     return NextResponse.json({ settings });
-  } catch {
-    return NextResponse.json(
-      { error: "Database unavailable" },
-      { status: 503 }
-    );
+  } catch (error) {
+    console.warn("⚠️ MongoDB settings save failed, saved locally:", error);
+    return NextResponse.json({ settings: updatedLocal });
   }
 }

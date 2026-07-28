@@ -1,0 +1,8 @@
+=== MongoDB Atlas Connection Diagnostics ===
+Date: 2026-07-28T05:48:49.460Z
+✅ Successfully read MONGODB_URI from .env.local
+Connection String: mongodb+srv://hellovivilrajs_db_user:******@abreco-energies.ymvobfg.mongodb.net/?appName=abreco-energies
+
+--- Testing DNS Resolution ---
+❌ DNS SRV Resolution Failed: querySrv ECONNREFUSED _mongodb._tcp.abreco-energies.ymvobfg.mongodb.net
+👉 Troubleshooting Tip: Your local network or DNS server is blocking MongoDB Atlas SRV lookup. Try changing your DNS server to Google DNS (8.8.8.8) or Cloudflare DNS (1.1.1.1).

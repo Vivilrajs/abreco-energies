@@ -3,6 +3,8 @@ import { z } from "zod";
 import { connectDB } from "@/lib/mongodb";
 import Solution from "@/lib/models/Solution";
 import { isAuthed } from "@/lib/auth";
+import { PRODUCTS_CONTENT } from "@/lib/product-content";
+import { getLocalItems, saveLocalItem } from "@/lib/local-db";
 
 const benefitSchema = z.object({
   icon: z.string().max(16).default("⚡"),
@@ -36,15 +38,35 @@ const solutionSchema = z.object({
 
 // Public GET returns only published; admin GET returns all.
 export async function GET() {
+  const localItems = getLocalItems("solutions");
+  let dbItems: any[] = [];
+
   try {
     await connectDB();
+
+    // Auto-seed if collection is empty
+    const count = await Solution.countDocuments();
+    if (count === 0) {
+      const dataToInsert = PRODUCTS_CONTENT.map(({ _id, ...rest }) => rest);
+      await Solution.insertMany(dataToInsert);
+    }
+
     const admin = await isAuthed();
     const query = admin ? {} : { published: true };
-    const solutions = await Solution.find(query).sort({ order: 1 }).lean();
-    return NextResponse.json({ solutions });
-  } catch {
-    return NextResponse.json({ solutions: [] });
+    dbItems = await Solution.find(query).sort({ order: 1 }).lean();
+  } catch (error) {
+    console.warn("⚠️ Could not load solutions from MongoDB, using local fallback:", error);
   }
+
+  // Merge
+  const merged = [...localItems];
+  dbItems.forEach((dbItem) => {
+    if (!merged.some((item) => item.slug === dbItem.slug)) {
+      merged.push(dbItem);
+    }
+  });
+
+  return NextResponse.json({ solutions: merged.sort((a, b) => (a.order || 0) - (b.order || 0)) });
 }
 
 export async function POST(req: NextRequest) {
@@ -55,13 +77,20 @@ export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const parsed = solutionSchema.safeParse(body);
   if (!parsed.success) {
+    const errorMsg = parsed.error.issues.map(i => `${i.path.join(".")}: ${i.message}`).join(", ");
     return NextResponse.json(
-      { error: "Invalid input", issues: parsed.error.flatten() },
+      { error: `Invalid input - ${errorMsg}` },
       { status: 400 }
     );
   }
 
-  await connectDB();
-  const created = await Solution.create(parsed.data);
-  return NextResponse.json({ solution: created }, { status: 201 });
+  try {
+    await connectDB();
+    const created = await Solution.create(parsed.data);
+    return NextResponse.json({ solution: created }, { status: 201 });
+  } catch (dbError) {
+    console.warn("⚠️ MongoDB save failed, saving solution locally:", dbError);
+    const createdLocal = saveLocalItem("solutions", parsed.data);
+    return NextResponse.json({ solution: createdLocal }, { status: 201 });
+  }
 }

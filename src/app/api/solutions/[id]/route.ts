@@ -3,6 +3,7 @@ import { z } from "zod";
 import { connectDB } from "@/lib/mongodb";
 import Solution from "@/lib/models/Solution";
 import { isAuthed } from "@/lib/auth";
+import { updateLocalItem, deleteLocalItem } from "@/lib/local-db";
 
 const benefitSchema = z.object({
   icon: z.string().max(16).default("⚡"),
@@ -49,14 +50,26 @@ export async function PUT(
     return NextResponse.json({ error: "Invalid input" }, { status: 400 });
   }
 
-  await connectDB();
-  const updated = await Solution.findByIdAndUpdate(id, parsed.data, {
-    new: true,
-  }).lean();
-  if (!updated) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (id.startsWith("local-")) {
+    const updatedLocal = updateLocalItem("solutions", id, parsed.data);
+    if (!updatedLocal) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ solution: updatedLocal });
   }
-  return NextResponse.json({ solution: updated });
+
+  try {
+    await connectDB();
+    const updated = await Solution.findByIdAndUpdate(id, parsed.data, {
+      new: true,
+    }).lean();
+    if (!updated) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ solution: updated });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }
 
 export async function DELETE(
@@ -68,7 +81,20 @@ export async function DELETE(
   }
 
   const { id } = await params;
-  await connectDB();
-  await Solution.findByIdAndDelete(id);
-  return NextResponse.json({ ok: true });
+
+  if (id.startsWith("local-")) {
+    const deleted = deleteLocalItem("solutions", id);
+    if (!deleted) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    await connectDB();
+    await Solution.findByIdAndDelete(id);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }

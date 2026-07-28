@@ -3,6 +3,7 @@ import { z } from "zod";
 import { connectDB } from "@/lib/mongodb";
 import BlogPost from "@/lib/models/BlogPost";
 import { isAuthed } from "@/lib/auth";
+import { updateLocalItem, deleteLocalItem } from "@/lib/local-db";
 
 const updateSchema = z.object({
   slug: z.string().min(1).max(120).optional(),
@@ -34,14 +35,26 @@ export async function PUT(
   const data: Record<string, unknown> = { ...parsed.data };
   if (parsed.data.date) data.date = new Date(parsed.data.date);
 
-  await connectDB();
-  const updated = await BlogPost.findByIdAndUpdate(id, data, {
-    new: true,
-  }).lean();
-  if (!updated) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  if (id.startsWith("local-")) {
+    const updatedLocal = updateLocalItem("posts", id, parsed.data);
+    if (!updatedLocal) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ post: updatedLocal });
   }
-  return NextResponse.json({ post: updated });
+
+  try {
+    await connectDB();
+    const updated = await BlogPost.findByIdAndUpdate(id, data, {
+      new: true,
+    }).lean();
+    if (!updated) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ post: updated });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }
 
 export async function DELETE(
@@ -53,7 +66,20 @@ export async function DELETE(
   }
 
   const { id } = await params;
-  await connectDB();
-  await BlogPost.findByIdAndDelete(id);
-  return NextResponse.json({ ok: true });
+
+  if (id.startsWith("local-")) {
+    const deleted = deleteLocalItem("posts", id);
+    if (!deleted) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
+  try {
+    await connectDB();
+    await BlogPost.findByIdAndDelete(id);
+    return NextResponse.json({ ok: true });
+  } catch (error) {
+    return NextResponse.json({ error: "Database error" }, { status: 500 });
+  }
 }

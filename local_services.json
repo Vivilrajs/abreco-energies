@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "solar-installation",
+    "eyebrow": "Solar",
+    "title": "Solar Installation",
+    "description": "End-to-end design and installation of high-efficiency solar PV systems for homes and businesses, sized to your roof and energy needs.\n\n",
+    "body": "From the first site assessment to the final switch-on, our CEC-accredited team handles system design, panel and inverter selection, and professional installation. We manage the paperwork and government rebates so you get maximum savings with minimum hassle.\n\n",
+    "image": "/media/uploads/solar-installation-1785220656910.jpg",
+    "order": 1,
+    "published": true,
+    "_id": "local-1785220664156-9ajtwpl",
+    "createdAt": "2026-07-28T06:37:44.156Z",
+    "updatedAt": "2026-07-28T06:39:44.186Z"
+  },
+  {
+    "slug": "Heat Pump Hot Water",
+    "eyebrow": "Hot Water",
+    "title": "Heat Pump Hot Water",
+    "description": "Heat Pump Hot Water\nEnergy-efficient heat pump hot water systems that use up to 70% less energy than traditional electric water heaters.\n\n",
+    "body": "We supply and install premium heat pump hot water systems for homes and businesses, replacing old gas or electric units. Fewer moving parts, long warranties, and access to federal and state rebates make the switch simple and affordable.\n\n",
+    "image": "https://media.gettyimages.com/id/686403884/photo/worker-installs-roof-top-solar-photovoltaic-panels-denver-colorado-home.jpg?s=612x612&w=0&k=20&c=bBWO3rRXS3DwaryIo6um1-TjKMIBvRy3PItfjMquYio=",
+    "order": 1,
+    "published": true,
+    "_id": "local-1785221540192-275dh6z",
+    "createdAt": "2026-07-28T06:52:20.192Z",
+    "updatedAt": "2026-07-28T06:52:20.192Z"
+  },
+  {
+    "slug": "Air Conditioning",
+    "eyebrow": "Climate",
+    "title": "Air Conditioning",
+    "description": "Eco-friendly split, multi-split, and ducted air conditioning systems installed by qualified technicians.\n\n",
+    "body": "Our energy-efficient air conditioners keep your home or workspace comfortable year-round while cutting electricity bills by up to 40–50%. We handle system selection, professional installation, and rebate guidance.",
+    "image": "https://media.gettyimages.com/id/2257238780/photo/hand-using-remote-control-turning-air-conditioner-on.jpg?s=612x612&w=0&k=20&c=ZVL5e5mDFzWr6yMEbWIbiy9Nr6lo2EAlfGxQKqgqR6Q=",
+    "order": 3,
+    "published": true,
+    "_id": "local-1785222031430-apfzk6q",
+    "createdAt": "2026-07-28T07:00:31.430Z",
+    "updatedAt": "2026-07-28T07:00:31.430Z"
+  },
+  {
+    "slug": "Solar Battery Solution",
+    "eyebrow": "Storage",
+    "title": "Solar Battery Solution",
+    "description": "Smart solar batteries that store daytime energy for use at night, during outages, or peak-price periods.\n\n",
+    "body": "Add energy independence and backup power with a scalable battery system that integrates with new or existing solar. Real-time monitoring, durable hardware, and end-to-end service from assessment to aftercare.\n\n",
+    "image": "https://media.gettyimages.com/id/2280287008/photo/engineer-technicians-installing-solar-panels-rooftop-sustainable-energy-solution.jpg?s=612x612&w=0&k=20&c=IpPyfSIjeJ1PSkGHJdbQTTgyQ5C2Wgh1_saNTp-V7rk=",
+    "order": 4,
+    "published": true,
+    "_id": "local-1785222569637-jxzcd72",
+    "createdAt": "2026-07-28T07:09:29.637Z",
+    "updatedAt": "2026-07-28T07:09:29.637Z"
+  }
+]

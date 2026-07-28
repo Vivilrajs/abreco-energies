@@ -1,0 +1,62 @@
+[
+  {
+    "title": "Rooftop Solar – 8 kW System",
+    "category": "Residential",
+    "image": "https://media.gettyimages.com/id/1756791456/photo/young-homeowners-installing-solar-panels-on-a-suburban-western-usa-home.jpg?s=612x612&w=0&k=20&c=cjUb-WetsMOsO9Yu6sumsIlKBGzOQvpjiUDhVWWzHs4=",
+    "order": 1,
+    "published": true,
+    "_id": "local-1785225427898-larjlbf",
+    "createdAt": "2026-07-28T07:57:07.898Z",
+    "updatedAt": "2026-07-28T07:57:07.898Z"
+  },
+  {
+    "_id": "local-proj-2",
+    "title": "Commercial Warehouse Install",
+    "category": "Commercial",
+    "image": "https://media.gettyimages.com/id/1452341885/photo/engineers-check-and-install-solar-panels-solar-panels-on-the-roof-of-the-building-a.jpg?s=612x612&w=0&k=20&c=qxOj3KLtOT2jX7YaxlN7rOPr2Z8thvgV_ksx3eJLxAw=",
+    "order": 2,
+    "published": true,
+    "createdAt": "2026-07-28T08:00:00.000Z",
+    "updatedAt": "2026-07-28T08:04:58.191Z"
+  },
+  {
+    "_id": "local-proj-3",
+    "title": "Heat Pump Hot Water",
+    "category": "Residential",
+    "image": "https://media.gettyimages.com/id/1680983755/photo/heat-pump-control-system.jpg?s=612x612&w=0&k=20&c=MrCv8OJy0kbxrb1fBTWJFf_pDMLzF6uF9wakqOzYIqQ=",
+    "order": 3,
+    "published": true,
+    "createdAt": "2026-07-28T08:00:00.000Z",
+    "updatedAt": "2026-07-28T08:06:47.532Z"
+  },
+  {
+    "_id": "local-proj-4",
+    "title": "Ducted Reverse-Cycle A/C",
+    "category": "Residential",
+    "image": "https://media.gettyimages.com/id/1411333588/photo/living-room-air-conditioner-outlet.jpg?s=612x612&w=0&k=20&c=um7Qrk4pqCcfSv88s82jCAVJRCzozPrAZbZipauT1vQ=",
+    "order": 4,
+    "published": true,
+    "createdAt": "2026-07-28T08:00:00.000Z",
+    "updatedAt": "2026-07-28T08:03:54.928Z"
+  },
+  {
+    "_id": "local-proj-5",
+    "title": "Solar Battery Backup",
+    "category": "Residential",
+    "image": "https://media.gettyimages.com/id/1452097174/photo/high-angle-overhead-shot-of-a-villa-with-solar-panels.jpg?s=612x612&w=0&k=20&c=vdcOP-KV4ypUiKInWaTHeCmUD_THuvNMITSnYatArJY=",
+    "order": 5,
+    "published": true,
+    "createdAt": "2026-07-28T08:00:00.000Z",
+    "updatedAt": "2026-07-28T08:07:56.756Z"
+  },
+  {
+    "_id": "local-proj-6",
+    "title": "Multi-Unit Solar Retrofit",
+    "category": "Commercial",
+    "image": "/assets/projects/proj-6.png",
+    "order": 6,
+    "published": true,
+    "createdAt": "2026-07-28T08:00:00.000Z",
+    "updatedAt": "2026-07-28T08:08:16.636Z"
+  }
+]

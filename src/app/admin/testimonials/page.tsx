@@ -76,7 +76,9 @@ export default function TestimonialsAdminPage() {
       setEditing(null);
       load();
     } else {
-      toast.error("Save failed.");
+      const errData = await res.json().catch(() => null);
+      const errMsg = errData?.error || errData?.message || "check connection";
+      toast.error(`Save failed: ${errMsg}`);
     }
   }
 

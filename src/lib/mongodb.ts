@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
+import dns from "node:dns";
+
+dns.setDefaultResultOrder("ipv4first");
 
 const MONGODB_URI = process.env.MONGODB_URI;
 
@@ -33,6 +36,7 @@ export async function connectDB(): Promise<typeof mongoose> {
   try {
     cached.conn = await cached.promise;
   } catch (err) {
+    console.error("❌ MONGODB CONNECTION ERROR:", err);
     // Reset so the next call retries instead of reusing a rejected promise.
     cached.promise = null;
     throw err;

@@ -80,7 +80,9 @@ export default function BlogAdminPage() {
       setEditing(null);
       load();
     } else {
-      toast.error("Save failed - check the slug is unique.");
+      const errData = await res.json().catch(() => null);
+      const errMsg = errData?.error || errData?.message || "check connection or slug uniqueness";
+      toast.error(`Save failed: ${errMsg}`);
     }
   }
 

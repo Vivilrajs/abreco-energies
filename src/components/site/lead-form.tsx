@@ -42,12 +42,18 @@ export function LeadForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Request failed");
-      toast.success("Thanks! We'll be in touch shortly.");
-      form.reset();
-      setState("");
-      setProduct("");
-    } catch {
+      if (res.ok) {
+        toast.success("Thanks! We'll be in touch shortly.");
+        form.reset();
+        setState("");
+        setProduct("");
+      } else {
+        const errData = await res.json().catch(() => null);
+        console.warn("Form submission database error:", errData);
+        toast.error("Something went wrong. Please try again.");
+      }
+    } catch (err: any) {
+      console.warn("Form submission exception:", err);
       toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);

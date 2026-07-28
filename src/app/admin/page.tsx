@@ -3,32 +3,56 @@ import { Inbox, LayoutGrid, Clock, CheckCircle2 } from "lucide-react";
 import { connectDB } from "@/lib/mongodb";
 import Submission from "@/lib/models/Submission";
 import Solution from "@/lib/models/Solution";
+import { ensureAllSeeded } from "@/lib/db-seed-helper";
+import { getLocalSubmissions } from "@/lib/local-db";
+import { PRODUCTS_CONTENT } from "@/lib/product-content";
 
 export const dynamic = "force-dynamic";
 
 async function getStats() {
+  const localList = getLocalSubmissions();
+  const localTotal = localList.length;
+  const localNew = localList.filter((s) => s.status === "new").length;
+  const localContacted = localList.filter((s) => s.status === "contacted").length;
+
+  let dbTotal = 0;
+  let dbNew = 0;
+  let dbContacted = 0;
+  let dbSolutions = 0;
+  let dbRecent: any[] = [];
+
   try {
     await connectDB();
-    const [total, newCount, contacted, closed, solutions, recent] =
+    await ensureAllSeeded();
+    const [total, newCount, contacted, solutions, recent] =
       await Promise.all([
         Submission.countDocuments(),
         Submission.countDocuments({ status: "new" }),
         Submission.countDocuments({ status: "contacted" }),
-        Submission.countDocuments({ status: "closed" }),
         Solution.countDocuments(),
         Submission.find().sort({ createdAt: -1 }).limit(5).lean(),
       ]);
-    return { total, newCount, contacted, closed, solutions, recent };
-  } catch {
-    return {
-      total: 0,
-      newCount: 0,
-      contacted: 0,
-      closed: 0,
-      solutions: 0,
-      recent: [],
-    };
+    dbTotal = total;
+    dbNew = newCount;
+    dbContacted = contacted;
+    dbSolutions = solutions;
+    dbRecent = recent;
+  } catch (error) {
+    console.warn("⚠️ Dashboard stats could not be loaded from MongoDB, using local fallback:", error);
+    dbSolutions = PRODUCTS_CONTENT.length; // fallback
   }
+
+  const mergedRecent = [...localList, ...dbRecent]
+    .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    .slice(0, 5);
+
+  return {
+    total: dbTotal + localTotal,
+    newCount: dbNew + localNew,
+    contacted: dbContacted + localContacted,
+    solutions: dbSolutions,
+    recent: mergedRecent,
+  };
 }
 
 export default async function AdminDashboard() {

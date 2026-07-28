@@ -1,0 +1,38 @@
+[
+  {
+    "_id": "local-1785218906663-d317b53",
+    "firstName": "Ann jo",
+    "email": "josnaj461@gmail.com",
+    "phone": "4567891234",
+    "state": "NSW",
+    "postcode": "7986",
+    "product": "Solar System",
+    "status": "new",
+    "createdAt": "2026-07-28T06:08:26.665Z",
+    "updatedAt": "2026-07-28T06:08:26.665Z"
+  },
+  {
+    "_id": "local-1785218922135-rcvvyc6",
+    "firstName": "Ann jo",
+    "email": "josnaj461@gmail.com",
+    "phone": "3456782345",
+    "state": "QLD",
+    "postcode": "",
+    "product": "Air Conditioner",
+    "status": "new",
+    "createdAt": "2026-07-28T06:08:42.140Z",
+    "updatedAt": "2026-07-28T06:08:42.140Z"
+  },
+  {
+    "_id": "local-1785219106444-pg3clad",
+    "firstName": "joann ",
+    "email": "joana456@gmail.com",
+    "phone": "1234567891",
+    "state": "NSW",
+    "postcode": "3000",
+    "product": "Battery",
+    "status": "new",
+    "createdAt": "2026-07-28T06:11:46.446Z",
+    "updatedAt": "2026-07-28T06:11:46.446Z"
+  }
+]
