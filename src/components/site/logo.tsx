@@ -7,7 +7,7 @@ import Image from "next/image";
 /** Brand lockup - light logo for light theme (public/logo-light.png), white/glow
  * variant for dark theme (public/logo-dark.png). Both transparent. */
 const LOGOS = {
-  light: { src: "/logo-light.png", width: 1570, height: 1002 },
+  light: { src: "/logo-light-v2.png", width: 1570, height: 1002 },
   dark: { src: "/logo-dark.png", width: 1536, height: 1024 },
 };
 
