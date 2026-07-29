@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
@@ -33,32 +33,17 @@ const NAV_AFTER_SOLAR = [
 const NAV_LAST = [{ label: "Contact", href: "/contact" }];
 
 export function SiteHeader() {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [solarOpen, setSolarOpen] = useState(false);
   const [pagesOpen, setPagesOpen] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  const solid = scrolled || open;
-  // Solid navbar adapts to theme (white in light, dark in dark); transparent
-  // navbar sits over the dark hero, so its text stays white.
-  const linkCls = solid
-    ? "text-sm text-foreground/70 transition hover:text-foreground"
-    : "text-sm text-white/70 transition hover:text-white";
+  // Navbar is always solid (white in light theme, dark navy in dark theme) —
+  // never transparent over the hero, so it stays legible at scroll position 0.
+  const linkCls = "text-sm text-foreground/70 transition hover:text-foreground";
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-40 transition-all duration-300 ${
-        solid
-          ? "border-b border-black/10 bg-white/85 backdrop-blur-xl dark:border-white/10 dark:bg-[#05141f]/90"
-          : "bg-transparent"
-      }`}
+      className="fixed inset-x-0 top-0 z-40 border-b border-black/10 bg-white/85 backdrop-blur-xl transition-all duration-300 dark:border-white/10 dark:bg-[#05141f]/90"
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center">
@@ -126,7 +111,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <ThemeToggle solid={solid} />
+          <ThemeToggle solid />
           <Link
             href="/contact"
             className="hidden rounded-full bg-brand px-5 py-2 text-sm font-medium text-white transition hover:bg-brand-strong sm:block"
@@ -135,7 +120,7 @@ export function SiteHeader() {
           </Link>
           <button
             onClick={() => setOpen((v) => !v)}
-            className={`lg:hidden ${solid ? "text-foreground" : "text-white"}`}
+            className="lg:hidden text-foreground"
             aria-label="Toggle menu"
           >
             {open ? <X /> : <Menu />}
