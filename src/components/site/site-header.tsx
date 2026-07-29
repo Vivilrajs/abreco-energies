@@ -62,7 +62,7 @@ export function SiteHeader() {
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         <Link href="/" className="flex items-center">
-          <Logo height={64} />
+          <Logo height={80} />
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
